@@ -70,6 +70,6 @@ func parse_icons(text:String) -> String:
 			r = s.format({"size":size, "r":r})
 
 		text = text.replace(x.get_string(), r)
-		x = regex.search(text, x.get_end())
+		x = regex.search(text)
 	
 	return text
