@@ -7,6 +7,7 @@ extends Button
 ## @tutorial(Icon Finder): "rakugoteam.github.io/material-icons-docs/2.1/HowToUse/"
 class_name MaterialButton
 
+@export_group("Icon", "icon_")
 ## Name of Material Icon to display
 @export var icon_name := "image-outline":
 	set(value):
@@ -15,6 +16,7 @@ class_name MaterialButton
 	
 	get: return icon_name
 
+@export_group("Icon", "icon_")
 ## Size of the icon in range 16-128
 @export_range(16, 128, 1)
 var icon_size := 16:
