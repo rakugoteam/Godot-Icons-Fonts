@@ -1,5 +1,5 @@
 @tool
-extends Window
+extends Panel
 
 @export
 @onready var icons_text: RichTextLabel
@@ -19,9 +19,6 @@ extends Window
 @export
 @onready var scroll_container: ScrollContainer
 
-@export
-@onready var help_button: Button
-
 var scroll_bar_v: ScrollBar:
 	get: return scroll_container.get_v_scroll_bar()
 
@@ -35,27 +32,20 @@ func _ready():
 	icons_text.finished.connect(_on_finished)
 	icons_text.set_meta_underline(false)
 	icons_text.tooltip_text = "click on icon to copy its name to clipboard"
-	close_requested.connect(hide)
 	size_slider.value_changed.connect(update_icons_size)
-	about_to_popup.connect(update_table)
+	size_slider.value = MaterialIconsDB.preview_size
 	update_icons_size(size_slider.value)
-
-func _on_help():
-	OS.shell_open("https://rakugoteam.github.io/material-icons-docs/")
+	update_table()
 
 func _on_finished():
 	scroll_bar_h.max_value = icons_text.size.y
 	scroll_bar_v.max_value = icons_text.size.x
 
-func _on_visibility_changed():
-	if is_visible():
-		search_line_edit.text = ""
-		update_icons_size(size_slider.value)
-
 func update_icons_size(value: int):
 	size_label.text = str(value)
 	icons_text.set("theme_override_font_sizes/normal_font_size", value)
 	update_table(search_line_edit.text)
+	MaterialIconsDB.preview_size = value
 
 func update_table(filter := ""):
 	var table = "[table={columns}, {inline_align}]"
