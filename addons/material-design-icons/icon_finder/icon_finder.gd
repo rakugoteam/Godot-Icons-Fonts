@@ -41,7 +41,7 @@ func _ready():
 	update_icons_size(size_slider.value)
 
 func _on_help():
-	OS.shell_open("rakkarage.github.io/icons-docs/version/how-to-use")
+	OS.shell_open("https://rakugoteam.github.io/material-icons-docs/")
 
 func _on_finished():
 	scroll_bar_h.max_value = icons_text.size.y
@@ -97,6 +97,6 @@ func _on_meta(link: String):
 	t.chain().tween_property(
 		notify_label, "modulate",
 		Color.TRANSPARENT, 1
-		)
+	)
 	await t.finished
 	notify_label.hide()
