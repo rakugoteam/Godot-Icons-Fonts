@@ -1,5 +1,5 @@
 @tool
-extends Window
+extends Panel
 
 @export
 @onready var icons_text: RichTextLabel
@@ -19,9 +19,6 @@ extends Window
 @export
 @onready var scroll_container: ScrollContainer
 
-@export
-@onready var help_button: Button
-
 var scroll_bar_v: ScrollBar:
 	get: return scroll_container.get_v_scroll_bar()
 
@@ -35,46 +32,44 @@ func _ready():
 	icons_text.finished.connect(_on_finished)
 	icons_text.set_meta_underline(false)
 	icons_text.tooltip_text = "click on icon to copy its name to clipboard"
-	close_requested.connect(hide)
 	size_slider.value_changed.connect(update_icons_size)
-	about_to_popup.connect(update_table)
+	size_slider.value = MaterialIconsDB.preview_size
 	update_icons_size(size_slider.value)
-
-func _on_help():
-	OS.shell_open("rakkarage.github.io/icons-docs/version/how-to-use")
+	update_table()
 
 func _on_finished():
 	scroll_bar_h.max_value = icons_text.size.y
 	scroll_bar_v.max_value = icons_text.size.x
 
-func _on_visibility_changed():
-	if is_visible():
-		search_line_edit.text = ""
-		update_icons_size(size_slider.value)
-
 func update_icons_size(value: int):
 	size_label.text = str(value)
 	icons_text.set("theme_override_font_sizes/normal_font_size", value)
 	update_table(search_line_edit.text)
+	MaterialIconsDB.preview_size = value
 
-func update_table(filter:=""):
+func update_table(filter := ""):
 	var table = "[table={columns}, {inline_align}]"
+	var columns := int(size.x / size_slider.value) + 1
 	table = table.format({
-		"columns": int(size.x / size_slider.value),
+		"columns": columns,
 		"inline_align": INLINE_ALIGNMENT_CENTER
 	})
 
+	var cells := columns
 	for key in MaterialIconsDB.icons:
-		if filter:
-			if not (filter.to_lower() in key):
-				continue
-		
+		if filter: if not (filter.to_lower() in key): continue
+		cells -= 1
+		if cells <= 0: cells = columns
 		var link := "[url={link}]{text}[/url]"
 		var text := MaterialIconsDB.get_icon_char(key)
 		link = link.format({"link": key, "text": text})
 
 		var cell := "[cell]{link}[/cell]"
 		table += cell.format({"link": link})
+	
+	if cells > 0:
+		for c in cells:
+			table += "[cell] [/cell]"
 
 	table += "[/table]"
 	icons_text.parse_bbcode(table)
@@ -92,6 +87,6 @@ func _on_meta(link: String):
 	t.chain().tween_property(
 		notify_label, "modulate",
 		Color.TRANSPARENT, 1
-		)
+	)
 	await t.finished
 	notify_label.hide()
