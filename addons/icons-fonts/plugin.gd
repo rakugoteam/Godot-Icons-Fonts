@@ -1,35 +1,38 @@
 @tool
 extends EditorPlugin
 
-const icons_db := "res://addons/icons-fonts/icons/icons.gd"
-const icon_finder_window_scene := \
-	"res://addons/icons-fonts/icon_finder/IconFinderWindow.tscn"
-const icon_finder_scene := \
-	"res://addons/icons-fonts/icon_finder/IconFinder.tscn"
+const plugin_dir := "res://addons/icons-fonts/"
+const icons_db := plugin_dir + "icons/icons.gd"
+const icon_finder_window_scene := plugin_dir + "IconFinderWindow.tscn"
+const icon_finder_scene := plugin_dir + "IconFinder.tscn"
+
 var command_palette := get_editor_interface().get_command_palette()
 var editor_interface := get_editor_interface().get_base_control()
 var icon_finder_window: Window
 var icon_finder: Panel
 var popup_size := Vector2i(775, 400)
 
+var commands := [
+	["Icon Finder Window", "icon_finder_window", show_icon_finder],
+	["Icon Finder Dock", "icon_finder_dock", add_to_dock],
+	# todo uncomment when docs are ready!
+	# ["IconsFonts Help", "icon_help", help],
+]
+
 func _enter_tree():
 	add_autoload_singleton("IconsFonts", icons_db)
-	await IconsFonts.ready
+	# await IconsFonts.ready
 
-	if IconsFonts.is_docked: add_to_dock()
+	# if IconsFonts.is_docked: add_to_dock()
 
-	add_tool_menu_item("Material Icon Finder Window", show_icon_finder)
-	add_tool_menu_item("Material Icon Finder Dock", add_to_dock)
-	add_tool_menu_item("Material Icon Help", help)
-
-	command_palette.add_command(
-		"Material Icon Finder Window", "icon_finder_window", show_icon_finder)
-	command_palette.add_command(
-		"Material Icon Finder Dock", "icon_finder_dock", add_to_dock)
-	command_palette.add_command("Material Icon Help", "icon_help", help)
+	for command: Array in commands:
+		add_tool_menu_item(command[0], command[2])
+		command_palette.add_command(command[0], command[1], command[2])
 
 func help():
-	OS.shell_open("https://rakugoteam.github.io/material-icons-docs/")
+	# todo update when docs are ready!
+	# OS.shell_open("https://rakugoteam.github.io/material-icons-docs/")
+	pass
 
 func add_to_dock():
 	icon_finder = load(icon_finder_scene).instantiate()
@@ -39,7 +42,7 @@ func add_to_dock():
 func show_icon_finder():
 	remove_control_from_bottom_panel(icon_finder)
 	icon_finder.queue_free()
-	IconsFonts.is_docked = false
+	# IconsFonts.is_docked = false
 
 	if icon_finder_window == null:
 		icon_finder_window = load(icon_finder_window_scene).instantiate()
@@ -49,8 +52,10 @@ func show_icon_finder():
 	icon_finder_window.popup_centered(popup_size)
 
 func _exit_tree():
-	remove_tool_menu_item("Find Material Icon")
-	command_palette.remove_command("find_icon")
+	for command: Array in commands:
+		remove_tool_menu_item(command[0])
+		command_palette.remove_command(command[0])
+	
 	remove_autoload_singleton("IconsFonts")
 
 	if icon_finder:
