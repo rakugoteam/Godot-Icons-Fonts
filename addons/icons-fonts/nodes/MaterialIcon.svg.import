@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://addons/icons-fontsnodes/MaterialIcon.svg"
+source_file="res://addons/icons-fonts/nodes/MaterialIcon.svg"
 dest_files=["res://.godot/imported/MaterialIcon.svg-ecfd91f2228e77b5fe8b93ab817a7618.ctex"]
 
 [params]

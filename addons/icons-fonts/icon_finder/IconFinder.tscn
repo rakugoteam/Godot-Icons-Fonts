@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bni8w3a3pcbwn"]
 
-[ext_resource type="Script" path="res://addons/icons-fontsicon_finder/icon_finder.gd" id="1_nv02s"]
-[ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fontsfonts/material_design_icons.ttf" id="4_xlv7e"]
+[ext_resource type="Script" path="res://addons/icons-fonts/icon_finder/icon_finder.gd" id="1_nv02s"]
+[ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/fonts/material_design_icons.ttf" id="4_xlv7e"]
 
 [node name="IconFinder" type="Panel" node_paths=PackedStringArray("icons_text", "notify_label", "search_line_edit", "size_slider", "size_label", "scroll_container")]
 anchors_preset = 15

@@ -1,11 +1,11 @@
 @tool
 extends EditorPlugin
 
-const icons_db := "res://addons/icons-fontsicons/icons.gd"
+const icons_db := "res://addons/icons-fonts/icons/icons.gd"
 const icon_finder_window_scene := \
-	"res://addons/icons-fontsicon_finder/IconFinderWindow.tscn"
+	"res://addons/icons-fonts/icon_finder/IconFinderWindow.tscn"
 const icon_finder_scene := \
-	"res://addons/icons-fontsicon_finder/IconFinder.tscn"
+	"res://addons/icons-fonts/icon_finder/IconFinder.tscn"
 var command_palette := get_editor_interface().get_command_palette()
 var editor_interface := get_editor_interface().get_base_control()
 var icon_finder_window: Window
