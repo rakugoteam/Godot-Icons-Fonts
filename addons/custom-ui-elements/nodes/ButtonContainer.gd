@@ -1,9 +1,9 @@
 @tool
-@icon("res://addons/custom-ui-elements/nodes/ButtonBox.svg")
-extends BoxContainer
+@icon("res://addons/custom-ui-elements/nodes/ButtonContainer.svg")
+extends PanelContainer
 
 # todo add descreption and docs links when ready
-class_name ButtonBox
+class_name ButtonContainer
 
 ## Emitted when button is pressed
 signal pressed
@@ -18,11 +18,9 @@ signal toggled(value: bool)
 		disabled = value
 		if disabled:
 			_change_stylebox("disabled")
+			return
 		
-		else:
-			_change_stylebox("normal")
-	
-	get: return disabled
+		_change_stylebox("normal")
 
 ## If true, button will be in toggle mode
 @export var toggle_mode := false
@@ -39,10 +37,9 @@ var _toggled := false:
 		if toggle_mode:
 			_togglef(null, value)
 			button_pressed = value
+			return
 		
-		else: emit_signal("pressed")
-	
-	get: return button_pressed
+		emit_signal("pressed")
 
 ## Name of node group to be used as button group
 ## It changes all toggleable buttons in group in to radio buttons
@@ -54,7 +51,7 @@ var _toggled := false:
 		style_normal = value
 		if !disabled or !button_pressed:
 			_change_stylebox("normal")
-		
+
 @export_group("Styles", "style_")
 @export var style_focus: StyleBox
 
@@ -76,18 +73,15 @@ var _toggled := false:
 			_change_stylebox("disabled")
 
 func connect_if_possible(sig: Signal, method: Callable):
-	if !sig.is_connected(method):
-		sig.connect(method)
+	if !sig.is_connected(method): sig.connect(method)
 
 func _ready() -> void:
 	_change_stylebox("normal")
-	_change_stylebox("focus", "focus")
 	
-	connect_if_possible(mouse_entered, _change_stylebox.bind("hover"))
+	connect_if_possible(mouse_entered, func(): _change_stylebox("hover"))
 	connect_if_possible(mouse_exited, _on_mouse_exited)
 	
-	if button_group:
-		add_to_group(button_group)
+	if button_group: add_to_group(button_group)
 
 func _on_mouse_exited():
 	if toggle_mode and _toggled:
@@ -96,60 +90,50 @@ func _on_mouse_exited():
 
 	_change_stylebox("normal")
 
-func _change_stylebox(
-	button_style: StringName, label_style: StringName = "normal"):
+func _change_stylebox(button_style: StringName = "normal"):
 	
-	if button_style == "normal" and style_normal:
-		add_theme_stylebox_override(label_style, style_normal)
-		return
-	
-	if button_style == "focus" and style_focus:
-		add_theme_stylebox_override(label_style, style_focus)
-		return
-	
-	if button_style == "pressed" and style_pressed:
-		add_theme_stylebox_override(label_style, style_pressed)
-		return
-	
-	if button_style == "hover" and style_hover:
-		add_theme_stylebox_override(label_style, style_hover)
-		return
-	
-	if button_style == "disabled" and style_disabled:
-		add_theme_stylebox_override(label_style, style_disabled)
-		return
-
+	prints("changed style to:", button_style)
 	var stylebox := get_theme_stylebox(button_style, "Button")
-	add_theme_stylebox_override(label_style, stylebox)
+	if button_style == "normal" and style_normal:
+		stylebox = style_normal
+	
+	elif button_style == "focus" and style_focus:
+		stylebox = style_focus
+	
+	elif button_style == "pressed" and style_pressed:
+		stylebox = style_pressed
+	
+	elif button_style == "hover" and style_hover:
+		stylebox = style_hover
+	
+	elif button_style == "disabled" and style_disabled:
+		stylebox = style_disabled
+
+	add_theme_stylebox_override("panel", stylebox)
 
 func _gui_input(event: InputEvent) -> void:
 	if disabled: return
 	
 	if event is InputEventMouseButton:
-		var e := event as InputEventMouseButton
-		if e.button_index == MOUSE_BUTTON_LEFT and e.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if toggle_mode:
 				var t := !_toggled
 				_togglef(null, t)
 				
 				if button_group:
 					get_tree().call_group(button_group, "_togglef", self, !t)
-				
-			else:
-				pressed.emit()
-				# print("pressed")
+					return
+			
+			pressed.emit()
+			# print("pressed")
 
-func _togglef(main_button: ButtonBox, value: bool):
+func _togglef(main_button: ButtonContainer, value: bool):
 	if disabled: return
 	if main_button == self: return
 	if radio_mode and _toggled: return
 
-	if value:
-		_change_stylebox("pressed")
-		_toggled = true
-		
-	else:
-		_change_stylebox("normal")
-		_toggled = false
-	
+	_toggled = value
+	if value: _change_stylebox("pressed")
+	else: _change_stylebox("normal")
+
 	toggled.emit(_toggled)
