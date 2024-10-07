@@ -2,11 +2,11 @@
 
 ![github-top-lang][lang] ![lic] ![lic-font]
 
-# Icons Fonts for Godot
+# Godot Icons Fonts
 
 **Compatible with Godot 4.x**
 
-This addon allows to easy find, use and recolor popular icons fonts in your Godot project.
+Makes easy to find and use icons from popular icon-fonts in your Godot project.
 
 ## What problems it solves:
 
