@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bbfeoo2kuf30n"
-path="res://.godot/imported/material_design_icons.ttf-1579ec5c9b2eaab41f326c3a8f2d91c2.fontdata"
+path="res://.godot/imported/material_design_icons.ttf-5a66c6d60b23ccf92626845df5e67b8e.fontdata"
 
 [deps]
 
 source_file="res://addons/icons-fonts/fonts/material_design_icons.ttf"
-dest_files=["res://.godot/imported/material_design_icons.ttf-1579ec5c9b2eaab41f326c3a8f2d91c2.fontdata"]
+dest_files=["res://.godot/imported/material_design_icons.ttf-5a66c6d60b23ccf92626845df5e67b8e.fontdata"]
 
 [params]
 
