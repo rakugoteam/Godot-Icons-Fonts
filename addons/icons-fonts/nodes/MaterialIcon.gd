@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/material-design-icons/nodes/MaterialIcon.svg")
+@icon("res://addons/icons-fontsnodes/MaterialIcon.svg")
 extends Label
 
 ## Simple UI node to display Material Design Icon
@@ -12,7 +12,7 @@ class_name MaterialIcon
 @export var icon_name := "image-outline":
 	set(value):
 		icon_name = value
-		text = MaterialIconsDB.get_icon_char(value)
+		text = IconsFonts.get_icon_char(value)
 	
 	get: return icon_name
 
@@ -27,7 +27,7 @@ var icon_size := 16:
 
 func _ready():
 	clip_text = false
-	var font := MaterialIconsDB.font
-	text = MaterialIconsDB.get_icon_char(icon_name)
+	var font := IconsFonts
+	text = IconsFontsicon_char(icon_name)
 	set("theme_override_fonts/font",font)
 	set("theme_override_font_sizes/font_size",icon_size)

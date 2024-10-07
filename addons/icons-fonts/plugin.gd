@@ -13,10 +13,10 @@ var icon_finder: Panel
 var popup_size := Vector2i(775, 400)
 
 func _enter_tree():
-	add_autoload_singleton("MaterialIconsDB", icons_db)
-	await MaterialIconsDB.ready
+	add_autoload_singleton("IconsFonts", icons_db)
+	await IconsFonts.ready
 
-	if MaterialIconsDB.is_docked: add_to_dock()
+	if IconsFonts.is_docked: add_to_dock()
 
 	add_tool_menu_item("Material Icon Finder Window", show_icon_finder)
 	add_tool_menu_item("Material Icon Finder Dock", add_to_dock)
@@ -39,7 +39,7 @@ func add_to_dock():
 func show_icon_finder():
 	remove_control_from_bottom_panel(icon_finder)
 	icon_finder.queue_free()
-	MaterialIconsDB.is_docked = false
+	IconsFonts.is_docked = false
 
 	if icon_finder_window == null:
 		icon_finder_window = load(icon_finder_window_scene).instantiate()
@@ -51,7 +51,7 @@ func show_icon_finder():
 func _exit_tree():
 	remove_tool_menu_item("Find Material Icon")
 	command_palette.remove_command("find_icon")
-	remove_autoload_singleton("MaterialIconsDB")
+	remove_autoload_singleton("IconsFonts")
 
 	if icon_finder:
 		remove_control_from_bottom_panel(icon_finder)
