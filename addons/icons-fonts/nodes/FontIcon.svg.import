@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drissyo4imc7c"
-path="res://.godot/imported/FontIconIcon.svg-5774e5223a540a11d000a6fbf3a3a525.ctex"
+path="res://.godot/imported/FontIcon.svg-1bab4063a82703b60d9abf5769a35adc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/icons-fonts/nodes/FontIconIcon.svg"
-dest_files=["res://.godot/imported/FontIconIcon.svg-5774e5223a540a11d000a6fbf3a3a525.ctex"]
+source_file="res://addons/icons-fonts/nodes/FontIcon.svg"
+dest_files=["res://.godot/imported/FontIcon.svg-1bab4063a82703b60d9abf5769a35adc.ctex"]
 
 [params]
 
