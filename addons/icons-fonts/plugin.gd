@@ -3,8 +3,9 @@ extends EditorPlugin
 
 const plugin_dir := "res://addons/icons-fonts/"
 const icons_db := plugin_dir + "icons/icons.gd"
-const icon_finder_window_scene := plugin_dir + "IconFinderWindow.tscn"
-const icon_finder_scene := plugin_dir + "IconFinder.tscn"
+const icon_finder_dir := plugin_dir + "icon_finder/"
+const icon_finder_window_scene := icon_finder_dir + "IconFinderWindow.tscn"
+const icon_finder_scene := icon_finder_dir + "IconFinder.tscn"
 
 var command_palette := get_editor_interface().get_command_palette()
 var editor_interface := get_editor_interface().get_base_control()
@@ -21,9 +22,10 @@ var commands := [
 
 func _enter_tree():
 	add_autoload_singleton("IconsFonts", icons_db)
-	# await IconsFonts.ready
 
-	# if IconsFonts.is_docked: add_to_dock()
+	await IconsFonts.ready
+
+	if IconsFonts.is_docked: add_to_dock()
 
 	for command: Array in commands:
 		add_tool_menu_item(command[0], command[2])
@@ -42,7 +44,7 @@ func add_to_dock():
 func show_icon_finder():
 	remove_control_from_bottom_panel(icon_finder)
 	icon_finder.queue_free()
-	# IconsFonts.is_docked = false
+	IconsFonts.is_docked = false
 
 	if icon_finder_window == null:
 		icon_finder_window = load(icon_finder_window_scene).instantiate()

@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Material Icons for Godot"
+config/name="Godot Icons Fonts "
 config/description="No Description"
 config/tags=PackedStringArray("addon", "rakugo")
 run/main_scene="res://addons/material-design-icons/examples/Test.tscn"
@@ -18,6 +18,14 @@ config/features=PackedStringArray("4.3")
 config/icon="res://icon.png"
 addons/icon_finder/docked=true
 addons/icon_finder/preview_size=16
+
+[autoload]
+
+IconsFonts="*res://addons/icons-fonts/icons/icons.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/icons-fonts/plugin.cfg")
 
 [physics]
 

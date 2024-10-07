@@ -1,4 +1,5 @@
 @tool
+# @singleton IconsFonts
 extends Node
 
 const docked_setting_path := "application/addons/icon_finder/is_docked"
@@ -6,13 +7,13 @@ const prev_size_setting_path := "application/addons/icon_finder/preview_size"
 const json_path := "res://addons/icons-fonts/icons/icons.json"
 const font_path := "res://addons/icons-fonts/fonts/material_design_icons.ttf"
 
-var is_docked: bool:
+static var is_docked: bool:
 	set(value):
 		ProjectSettings.set_setting(docked_setting_path, value)
 	get:
 		return ProjectSettings.get_setting(docked_setting_path, true)
 
-var preview_size: int:
+static var preview_size: int:
 	set(value):
 		ProjectSettings.set_setting(prev_size_setting_path, value)
 	get:

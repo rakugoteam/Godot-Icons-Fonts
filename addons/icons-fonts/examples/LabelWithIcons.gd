@@ -12,4 +12,4 @@ var text_with_icons: String:
 
 func _ready():
 	bbcode_enabled = true
-	text = IconsFontse_icons(text_with_icons)
+	text = IconsFonts.parse_icons(text_with_icons)

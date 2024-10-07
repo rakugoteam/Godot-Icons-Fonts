@@ -29,6 +29,6 @@ var icon_size := 16:
 func _ready():
 	clip_text = false
 	var font := IconsFonts
-	text = IconsFontsicon_char(icon_name)
+	text = IconsFonts.get_icon_char(icon_name)
 	set("theme_override_fonts/font",font)
 	set("theme_override_font_sizes/font_size",icon_size)

@@ -45,7 +45,7 @@ func update_icons_size(value: int):
 	size_label.text = str(value)
 	icons_text.set("theme_override_font_sizes/normal_font_size", value)
 	update_table(search_line_edit.text)
-	IconsFontsiew_size = value
+	IconsFonts.preview_size = value
 
 func update_table(filter := ""):
 	var table = "[table={columns}, {inline_align}]"
@@ -56,12 +56,12 @@ func update_table(filter := ""):
 	})
 
 	var cells := columns
-	for key in IconsFontss:
+	for key in IconsFonts.icons:
 		if filter: if not (filter.to_lower() in key): continue
 		cells -= 1
 		if cells <= 0: cells = columns
 		var link := "[url={link}]{text}[/url]"
-		var text := IconsFontsicon_char(key)
+		var text := IconsFonts.get_icon_char(key)
 		link = link.format({"link": key, "text": text})
 
 		var cell := "[cell]{link}[/cell]"
