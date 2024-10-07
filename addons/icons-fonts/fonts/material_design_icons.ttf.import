@@ -7,7 +7,7 @@ path="res://.godot/imported/material_design_icons.ttf-1579ec5c9b2eaab41f326c3a8f
 
 [deps]
 
-source_file="res://addons/material-design-icons/fonts/material_design_icons.ttf"
+source_file="res://addons/icons-fontsfonts/material_design_icons.ttf"
 dest_files=["res://.godot/imported/material_design_icons.ttf-1579ec5c9b2eaab41f326c3a8f2d91c2.fontdata"]
 
 [params]
