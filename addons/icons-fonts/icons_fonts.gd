@@ -38,7 +38,7 @@ func help():
 
 func add_to_dock():
 	icon_finder = load(icon_finder_scene).instantiate()
-	add_control_to_bottom_panel(icon_finder, "Material Icons")
+	add_control_to_bottom_panel(icon_finder, "Icons Finder")
 	icon_finder.update_table()
 
 func show_icon_finder():
