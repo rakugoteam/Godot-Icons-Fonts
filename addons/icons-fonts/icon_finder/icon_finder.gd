@@ -33,7 +33,7 @@ func _ready():
 	icons_text.set_meta_underline(false)
 	icons_text.tooltip_text = "click on icon to copy its name to clipboard"
 	size_slider.value_changed.connect(update_icons_size)
-	size_slider.value = MaterialIconsDB.preview_size
+	size_slider.value = IconsFonts.preview_size
 	update_icons_size(size_slider.value)
 	update_table()
 
@@ -45,7 +45,7 @@ func update_icons_size(value: int):
 	size_label.text = str(value)
 	icons_text.set("theme_override_font_sizes/normal_font_size", value)
 	update_table(search_line_edit.text)
-	MaterialIconsDB.preview_size = value
+	IconsFontsiew_size = value
 
 func update_table(filter := ""):
 	var table = "[table={columns}, {inline_align}]"
@@ -56,12 +56,12 @@ func update_table(filter := ""):
 	})
 
 	var cells := columns
-	for key in MaterialIconsDB.icons:
+	for key in IconsFontss:
 		if filter: if not (filter.to_lower() in key): continue
 		cells -= 1
 		if cells <= 0: cells = columns
 		var link := "[url={link}]{text}[/url]"
-		var text := MaterialIconsDB.get_icon_char(key)
+		var text := IconsFontsicon_char(key)
 		link = link.format({"link": key, "text": text})
 
 		var cell := "[cell]{link}[/cell]"
