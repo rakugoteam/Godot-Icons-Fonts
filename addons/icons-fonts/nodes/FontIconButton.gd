@@ -1,14 +1,12 @@
 @tool
-@icon("res://addons/icons-fontsnodes/MaterialButton.svg")
+@icon("res://addons/icons-fontsnodes/FontIconButton.svg")
 extends Button
 
-## Simple Button with Material Icon
-## @tutorial: "rakugoteam.github.io/material-icons-docs/2.1/MaterialButton/"
-## @tutorial(Icon Finder): "rakugoteam.github.io/material-icons-docs/2.1/HowToUse/"
-class_name MaterialButton
+# todo add descreption and docs links when ready
+class_name FontIconButton
 
 @export_group("Icon", "icon_")
-## Name of Material Icon to display
+## Name of Icon to display
 @export var icon_name := "image-outline":
 	set(value):
 		icon_name = value

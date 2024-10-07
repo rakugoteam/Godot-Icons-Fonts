@@ -2,13 +2,10 @@
 @icon("res://addons/icons-fontsnodes/MaterialIcon.svg")
 extends Label
 
-## Simple UI node to display Material Design Icon
-## @tutorial: "rakugoteam.github.io/material-icons-docs/2.1/MaterialIcon/"
-## @tutorial(Icon Finder): "rakugoteam.github.io/material-icons-docs/2.1/HowToUse/"
+# todo add descreption and docs links when ready
+class_name FontIconIcon
 
-class_name MaterialIcon
-
-## Name of Material Icon to display
+## Name of Icon to display
 @export var icon_name := "image-outline":
 	set(value):
 		icon_name = value
