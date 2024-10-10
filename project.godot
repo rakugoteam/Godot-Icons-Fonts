@@ -21,7 +21,7 @@ addons/icon_finder/preview_size=16
 
 [autoload]
 
-IconsFonts="*res://addons/icons-fonts/icons/icons.gd"
+IconsFonts="*res://addons/icons-fonts/icons_fonts/IconsFonts.gd"
 
 [editor_plugins]
 

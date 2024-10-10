@@ -1,8 +1,9 @@
 @tool
+# @singleton IconsFonts
 extends EditorPlugin
 
 const plugin_dir := "res://addons/icons-fonts/"
-const icons_db := plugin_dir + "icons/icons.gd"
+const icons_db := plugin_dir + "icons_fonts/IconsFonts.gd"
 const icon_finder_dir := plugin_dir + "icon_finder/"
 const icon_finder_window_scene := icon_finder_dir + "IconFinderWindow.tscn"
 const icon_finder_scene := icon_finder_dir + "IconFinder.tscn"
