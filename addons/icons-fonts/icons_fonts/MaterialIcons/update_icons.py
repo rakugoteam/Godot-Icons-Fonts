@@ -43,7 +43,7 @@ for match in matches:
 	mdi_class, content_hex = match
 	content_unicode = content_hex.replace("\\", "")
 	icons_dict[mdi_class] = content_unicode
-	print(f"icon: {mdi_class}, unicode: {content_unicode }")
+	print(f"icon: {mdi_class}, unicode: {content_unicode}")
 
 # Save the dictionary to a JSON file
 with open('icons.json', 'w') as json_file:
