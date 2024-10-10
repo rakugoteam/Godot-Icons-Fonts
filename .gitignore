@@ -14,3 +14,4 @@ addons/godot-plugin-refresher
 .vscode/
 *.ini
 env
+py_env/

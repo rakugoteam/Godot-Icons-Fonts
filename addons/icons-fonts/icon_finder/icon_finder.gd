@@ -1,5 +1,5 @@
 @tool
-extends Panel
+extends Control
 
 @export
 @onready var icons_text: RichTextLabel
@@ -19,11 +19,20 @@ extends Panel
 @export
 @onready var scroll_container: ScrollContainer
 
+@export
+@onready var fonts_dropdown: OptionButton
+
+@export var material_icons_font: FontFile
+@export var emojis_font: FontFile
+
 var scroll_bar_v: ScrollBar:
 	get: return scroll_container.get_v_scroll_bar()
 
 var scroll_bar_h: ScrollBar:
 	get: return scroll_container.get_h_scroll_bar()
+
+var data := {}
+var font_name := "Material Icons"
 
 func _ready():
 	notify_label.hide()
@@ -35,6 +44,9 @@ func _ready():
 	size_slider.value_changed.connect(update_icons_size)
 	size_slider.value = IconsFonts.preview_size
 	update_icons_size(size_slider.value)
+	fonts_dropdown.item_selected.connect(on_font_changed)
+	await fonts_dropdown.ready
+	on_font_changed(0)
 	update_table()
 
 func _on_finished():
@@ -43,9 +55,24 @@ func _on_finished():
 
 func update_icons_size(value: int):
 	size_label.text = str(value)
-	icons_text.set("theme_override_font_sizes/normal_font_size", value)
+	icons_text.add_theme_font_size_override("normal", value)
 	update_table(search_line_edit.text)
 	IconsFonts.preview_size = value
+
+func on_font_changed(font_id: int):
+	font_name = fonts_dropdown.get_item_text(font_id)
+	var font: FontFile
+
+	match font_name:
+		"MaterialIcons":
+			data = IconsFonts.material_icons
+			font = material_icons_font
+	
+		"Emojis":
+			data = IconsFonts.emojis
+			font = emojis_font
+	
+	icons_text.add_theme_font_override("normal", font)
 
 func update_table(filter := ""):
 	var table = "[table={columns}, {inline_align}]"
@@ -56,16 +83,24 @@ func update_table(filter := ""):
 	})
 
 	var cells := columns
-	for key in IconsFonts.material_icons:
-		if filter: if not (filter.to_lower() in key): continue
+
+	for key in data:
+		if filter: if not (filter.to_lower() in key):
+			continue
+		
 		cells -= 1
 		if cells <= 0: cells = columns
 		var link := "[url={link}]{text}[/url]"
-		var text := IconsFonts.get_icon_char(key)
+
+		var text := IconsFonts.get_icon_char(font_name, key)
 		link = link.format({"link": key, "text": text})
 
 		var cell := "[cell]{link}[/cell]"
 		table += cell.format({"link": link})
+	
+	cells = abs(cells)
+	while cells > columns:
+		cells -= 1
 	
 	if cells > 0:
 		for c in cells:

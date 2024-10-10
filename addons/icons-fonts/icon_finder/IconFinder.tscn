@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bni8w3a3pcbwn"]
+[gd_scene load_steps=4 format=3 uid="uid://bni8w3a3pcbwn"]
 
 [ext_resource type="Script" path="res://addons/icons-fonts/icon_finder/icon_finder.gd" id="1_nv02s"]
-[ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/fonts/material_design_icons.ttf" id="4_xlv7e"]
+[ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="2_8e28h"]
+[ext_resource type="FontFile" uid="uid://be10y8fgoiayy" path="res://addons/icons-fonts/icons_fonts/emojis/NotoColorEmoji.ttf" id="3_sggto"]
 
-[node name="IconFinder" type="Panel" node_paths=PackedStringArray("icons_text", "notify_label", "search_line_edit", "size_slider", "size_label", "scroll_container")]
+[node name="IconFinder" type="Panel" node_paths=PackedStringArray("icons_text", "notify_label", "search_line_edit", "size_slider", "size_label", "scroll_container", "fonts_dropdown")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,46 +13,68 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_nv02s")
-icons_text = NodePath("VBoxContainer/ScrollContainer/RichTextLabel")
-notify_label = NodePath("VBoxContainer/Notify")
-search_line_edit = NodePath("VBoxContainer/HBoxContainer/Search")
-size_slider = NodePath("VBoxContainer/SliderContainer/HSlider")
-size_label = NodePath("VBoxContainer/SliderContainer/LabelSize")
-scroll_container = NodePath("VBoxContainer/ScrollContainer")
+icons_text = NodePath("MarginContainer/VBoxContainer/ScrollContainer/IconsTable")
+notify_label = NodePath("MarginContainer/VBoxContainer/Notify")
+search_line_edit = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Search")
+size_slider = NodePath("MarginContainer/VBoxContainer/SliderContainer/HSlider")
+size_label = NodePath("MarginContainer/VBoxContainer/SliderContainer/LabelSize")
+scroll_container = NodePath("MarginContainer/VBoxContainer/ScrollContainer")
+fonts_dropdown = NodePath("MarginContainer/VBoxContainer/HBoxContainer/FontsDropdown")
+material_icons_font = ExtResource("2_8e28h")
+emojis_font = ExtResource("3_sggto")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Search" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Font"
+
+[node name="FontsDropdown" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "MaterialIcons"
+popup/item_1/text = "Emojis"
+popup/item_1/id = 1
+
+[node name="Search" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Search"
 caret_blink = true
 caret_blink_interval = 0.5
 
-[node name="Notify" type="Label" parent="VBoxContainer"]
+[node name="Notify" type="Label" parent="MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 text = "Icon-x was copied to clipboard."
 
-[node name="SliderContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="SliderContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/SliderContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SliderContainer"]
 layout_mode = 2
 text = "Size preview"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/SliderContainer"]
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SliderContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -59,21 +82,20 @@ min_value = 16.0
 max_value = 128.0
 value = 16.0
 
-[node name="LabelSize" type="Label" parent="VBoxContainer/SliderContainer"]
+[node name="LabelSize" type="Label" parent="MarginContainer/VBoxContainer/SliderContainer"]
 layout_mode = 2
 text = "16"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/ScrollContainer"]
+[node name="IconsTable" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tooltip_text = "click on icon to copy its name to clipboard"
 theme_override_colors/table_border = Color(1, 1, 1, 1)
-theme_override_fonts/normal_font = ExtResource("4_xlv7e")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 fit_content = true
