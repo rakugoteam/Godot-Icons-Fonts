@@ -16,7 +16,7 @@ download_file(css_url, 'materialdesignicons.css')
 print("CSS file downloaded.")
 
 # Download the TTF font file
-download_file(ttf_url, '../fonts/material_design_icons.ttf')
+download_file(ttf_url, 'material_design_icons.ttf')
 print("TTF font file downloaded.")
 
 # Specify the path to your text file

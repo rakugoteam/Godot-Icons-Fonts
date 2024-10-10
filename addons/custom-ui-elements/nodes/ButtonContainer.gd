@@ -7,7 +7,6 @@ class_name ButtonContainer
 
 ## Emitted when button is pressed
 signal pressed
-
 ## Emitted when button is toggled
 ## Works only if `toggle_mode` is on.
 signal toggled(value: bool)

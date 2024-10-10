@@ -4,8 +4,9 @@ extends Node
 
 const docked_setting_path := "application/addons/icon_finder/is_docked"
 const prev_size_setting_path := "application/addons/icon_finder/preview_size"
-const json_path := "res://addons/icons-fonts/icons/icons.json"
-const font_path := "res://addons/icons-fonts/fonts/material_design_icons.ttf"
+const material_icons_dir := "res://addons/icons-fonts/icons_fonts/MaterialIcons/"
+const json_path := material_icons_dir + "icons.json"
+const font_path := material_icons_dir + "material_design_icons.ttf"
 
 static var is_docked: bool:
 	set(value):

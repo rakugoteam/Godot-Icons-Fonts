@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://casymgu2sqx81"]
 
-[ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/fonts/material_design_icons.ttf" id="1_vhsqm"]
+[ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="1_vhsqm"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="2_fd237"]
 [ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_jajcj"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="4_5ca3b"]
@@ -25,7 +25,7 @@ shadow_color = Color(1, 1, 1, 1)
 shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jm3xg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xr1m2"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -69,7 +69,7 @@ icon_settings = SubResource("Resource_a0w4j")
 
 [node name="ButtonContainer" type="PanelContainer" parent="."]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jm3xg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_xr1m2")
 script = ExtResource("5_dgwom")
 
 [node name="MarginContainer" type="MarginContainer" parent="ButtonContainer"]
@@ -101,4 +101,3 @@ script = ExtResource("4_5ca3b")
 icon_settings = SubResource("Resource_28mvn")
 text = "Jakiś Text"
 label_settings = SubResource("LabelSettings_6nmg6")
-button_margin = 5
