@@ -4,8 +4,8 @@ class_name FontIconSettings
 extends Resource
 
 # dosn't work yet!
-@export_enum("Material Icons", "Emojis", "Game-Icons.net")
-var icon_font := "Material Icons"
+@export_enum("MaterialIcons", "Emojis", "GameIcons")
+var icon_font := "MaterialIcons"
 
 ## Name of Icon to display
 @export var icon_name := "image-outline":
@@ -56,7 +56,12 @@ var icon_size := 16:
 		emit_changed()
 
 func update_label_settings(label_settings: LabelSettings) -> void:
-	label_settings.font = IconsFonts.font
+	match icon_font:
+		"MaterialIcons":
+			label_settings.font = load(IconsFonts.material_icons_font)
+		"Emojis":
+			label_settings.font = load(IconsFonts.emojis_font)
+
 	label_settings.font_size = icon_size
 	label_settings.font_color = icon_color
 	label_settings.outline_color = outline_color

@@ -20,5 +20,9 @@ func _on_icon_settings_changed():
 	if !label_settings:
 		label_settings = LabelSettings.new()
 		label_settings.changed.connect(_on_icon_settings_changed)
+	
 	icon_settings.update_label_settings(label_settings)
-	text = IconsFonts.get_icon_char( icon_settings.icon_font, icon_settings.icon_name)
+	text = IconsFonts.get_icon_char(
+		icon_settings.icon_font,
+		icon_settings.icon_name
+	)

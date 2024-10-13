@@ -30,11 +30,11 @@ static var preview_size: int:
 
 func _ready():
 	var json := JSON.new()
-
 	var content = get_file_content(material_icons_json)
 	if json.parse(content) == OK:
 		init_material_icons_dict(json.data)
 	
+	json = JSON.new()
 	content = get_file_content(emojis_json)
 	if json.parse(content) == OK:
 		init_emoji_dictionaries(json.data)
@@ -74,22 +74,11 @@ func get_icon_code(font: String, id: String) -> int:
 		"MaterialIcons":
 			if id in material_icons:
 				return material_icons[id]
+			
 		"GameIcons": pass
 	
 	push_warning("Icon '%s' in font %s not found." % [font, id])
 	return 0
-
-func get_icon_name(font: String, char: int) -> String:
-	match font:
-		"MaterialIcons":
-			for icon in material_icons:
-				if material_icons[icon] == char:
-					return icon
-		
-		"GameIcons": pass
-
-	push_warning("Icon with char '%s' in font %s not found." % [char, font])
-	return ""
 
 func get_emoji_unicode(id: String) -> String:
 	if id in emojis:

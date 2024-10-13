@@ -15,7 +15,7 @@ shadow_offset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_a0w4j"]
 script = ExtResource("3_jajcj")
-icon_font = "Material Icons"
+icon_font = "MaterialIcons"
 icon_name = "image-outline"
 icon_size = 128
 icon_color = Color(1, 1, 1, 1)
@@ -25,7 +25,7 @@ shadow_color = Color(1, 1, 1, 1)
 shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibfax"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3wc2"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -39,7 +39,7 @@ corner_detail = 5
 
 [sub_resource type="Resource" id="Resource_28mvn"]
 script = ExtResource("3_jajcj")
-icon_font = "Material Icons"
+icon_font = "MaterialIcons"
 icon_name = "image-outline"
 icon_size = 16
 icon_color = Color(1, 1, 1, 1)
@@ -62,13 +62,14 @@ grow_vertical = 2
 
 [node name="FontIcon" type="Label" parent="."]
 layout_mode = 2
+text = "󰥶"
 label_settings = SubResource("LabelSettings_fw4y0")
 script = ExtResource("2_fd237")
 icon_settings = SubResource("Resource_a0w4j")
 
 [node name="ButtonContainer" type="PanelContainer" parent="."]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ibfax")
+theme_override_styles/panel = SubResource("StyleBoxFlat_a3wc2")
 script = ExtResource("5_dgwom")
 
 [node name="MarginContainer" type="MarginContainer" parent="ButtonContainer"]
@@ -84,6 +85,7 @@ layout_mode = 2
 [node name="FontIcon" type="Label" parent="ButtonContainer/MarginContainer/BoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 7
+text = "󰥶"
 label_settings = SubResource("LabelSettings_fw4y0")
 script = ExtResource("2_fd237")
 icon_settings = SubResource("Resource_a0w4j")
