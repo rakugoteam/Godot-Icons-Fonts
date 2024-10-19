@@ -47,9 +47,11 @@ func _ready():
 	size_slider.value = IconsFonts.preview_size
 
 	fonts_dropdown.item_selected.connect(on_font_changed)
-	# await get_tree().create_timer(1).timeout
-	on_font_changed(0)
-	update_icons_size(size_slider.value)
+	
+	await IconsFonts.font_loaded == "MaterialIcons"
+	await IconsFonts.font_loaded == "Emojis"
+	await on_font_changed(0)
+	await update_icons_size(size_slider.value)
 	update_table()
 
 func _on_finished():
@@ -59,9 +61,8 @@ func _on_finished():
 func update_icons_size(value: int):
 	size_label.text = str(value)
 	if icons_renderer:
-		icons_renderer.add_theme_font_size_override(
-			"normal", value)
-	update_table(search_line_edit.text)
+		icons_renderer.add_theme_font_size_override("normal", value)
+		update_table(search_line_edit.text)
 	IconsFonts.preview_size = value
 
 func on_font_changed(font_id: int):
@@ -79,6 +80,7 @@ func on_font_changed(font_id: int):
 	update_table(search_line_edit.text)
 
 func update_table(filter := ""):
+	if not icons_renderer: return
 	icons_renderer.update_table(filter)
 
 func _on_meta(link: String):

@@ -93,11 +93,13 @@ size_flags_vertical = 3
 
 [node name="Tabs" type="TabContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 current_tab = 0
 tabs_visible = false
 
 [node name="MaterialIcons" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs"]
+clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -109,14 +111,13 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-meta_underlined = false
 threaded = true
-progress_bar_delay = 0
 script = ExtResource("3_q5eq7")
 metadata/_tab_index = 0
 
 [node name="Emojis" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs"]
 visible = false
+clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -128,8 +129,6 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
-meta_underlined = false
 threaded = true
-progress_bar_delay = 0
 script = ExtResource("5_sv6qr")
 metadata/_tab_index = 1

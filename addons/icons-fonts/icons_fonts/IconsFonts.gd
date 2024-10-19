@@ -13,6 +13,7 @@ const material_icons_font := "res://addons/icons-fonts/icons_fonts/MaterialIcons
 const emojis_json := "res://addons/icons-fonts/icons_fonts/emojis/emojis.json"
 const emojis_font := "res://addons/icons-fonts/icons_fonts/emojis/NotoColorEmoji.ttf"
 
+signal font_loaded(font_name: String)
 var material_icons := {}
 var emojis := {}
 
@@ -56,7 +57,8 @@ func init_material_icons_dict(data: Dictionary):
 		material_icons[id] = ("0x" + hex).hex_to_int()
 		# prints(id, material_icons[id])
 	
-	# prints("material_icons loaded")
+	prints("FontsIcons: MaterialIcons loaded")
+	font_loaded.emit("MaterialIcons")
 
 func init_emoji_dictionaries(dict: Dictionary):
 	for emoji in dict:
@@ -64,7 +66,8 @@ func init_emoji_dictionaries(dict: Dictionary):
 		for key in keys:
 			emojis[key] = emoji
 		
-		# prints(dict[emoji], emoji)
+	prints("FontsIcons: Emojis loaded")
+	font_loaded.emit("Emojis")
 
 func get_icon_code(font: String, id: String) -> int:
 	if "," in id:

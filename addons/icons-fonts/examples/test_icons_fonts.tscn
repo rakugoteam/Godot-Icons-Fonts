@@ -25,7 +25,7 @@ shadow_color = Color(1, 1, 1, 1)
 shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxy20"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x2gj"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -69,7 +69,7 @@ icon_settings = SubResource("Resource_a0w4j")
 
 [node name="ButtonContainer" type="PanelContainer" parent="."]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jxy20")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1x2gj")
 script = ExtResource("5_dgwom")
 
 [node name="MarginContainer" type="MarginContainer" parent="ButtonContainer"]

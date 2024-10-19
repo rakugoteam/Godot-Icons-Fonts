@@ -12,8 +12,8 @@ func update_table(filter := ""):
 	})
 
 	var cells := columns
-	for key in IconsFonts.material_icons:
-		if filter: if not (filter.to_lower() in key): continue
+	for key: String in IconsFonts.material_icons:
+		if filter and filter.to_lower() not in key: continue
 		cells -= 1
 		if cells <= 0: cells = columns
 		var link := "[url={link}]{text}[/url]"

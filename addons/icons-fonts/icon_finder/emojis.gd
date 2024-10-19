@@ -12,10 +12,10 @@ func update_table(filter := ""):
 	})
 
 	var cells := columns
-	for key in IconsFonts.emojis:
-		if filter: if not (filter.to_lower() in key): continue
+	for key: String in IconsFonts.emojis:
+		if filter and filter.to_lower() not in key: continue
 		cells -= 1
-		if cells <= 0: cells == columns
+		if cells <= 0: cells = columns
 		var link := "[url={link}]{text}[/url]"
 		var text := str(IconsFonts.emojis[key])
 		link = link.format({"link": key, "text": text})
