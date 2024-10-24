@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bni8w3a3pcbwn"]
+[gd_scene load_steps=5 format=3 uid="uid://bni8w3a3pcbwn"]
 
 [ext_resource type="Script" path="res://addons/icons-fonts/icon_finder/icon_finder.gd" id="1_nv02s"]
 [ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="2_8e28h"]
-[ext_resource type="Script" path="res://addons/icons-fonts/icon_finder/material_icons.gd" id="3_q5eq7"]
+[ext_resource type="Script" path="res://addons/icons-fonts/icon_finder/IconsFontsRender.gd" id="3_hobrt"]
 [ext_resource type="FontFile" uid="uid://be10y8fgoiayy" path="res://addons/icons-fonts/icons_fonts/emojis/NotoColorEmoji.ttf" id="3_sggto"]
-[ext_resource type="Script" path="res://addons/icons-fonts/icon_finder/emojis.gd" id="5_sv6qr"]
 
 [node name="IconFinder" type="Panel" node_paths=PackedStringArray("icons_renderers", "icons_renderers_tabs", "notify_label", "search_line_edit", "size_slider", "size_label", "scroll_container", "fonts_dropdown")]
 anchors_preset = 15
@@ -90,12 +89,14 @@ text = "16"
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+follow_focus = true
 
 [node name="Tabs" type="TabContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 current_tab = 0
+clip_tabs = false
 tabs_visible = false
 
 [node name="MaterialIcons" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs"]
@@ -104,15 +105,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tooltip_text = "click on icon to copy its name to clipboard"
-theme_override_colors/table_border = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("2_8e28h")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-fit_content = true
 scroll_active = false
 autowrap_mode = 0
+meta_underlined = false
 threaded = true
-script = ExtResource("3_q5eq7")
+script = ExtResource("3_hobrt")
 metadata/_tab_index = 0
 
 [node name="Emojis" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs"]
@@ -122,13 +122,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 tooltip_text = "click on icon to copy its name to clipboard"
-theme_override_colors/table_border = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("3_sggto")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-fit_content = true
+text = "Loading"
 scroll_active = false
 autowrap_mode = 0
+meta_underlined = false
 threaded = true
-script = ExtResource("5_sv6qr")
+script = ExtResource("3_hobrt")
+icon_font = "Emojis"
 metadata/_tab_index = 1

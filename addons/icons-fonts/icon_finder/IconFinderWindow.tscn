@@ -8,6 +8,7 @@ initial_position = 2
 size = Vector2i(775, 400)
 wrap_controls = true
 
-[node name="IconFinder" parent="." instance=ExtResource("2_aqufi")]
+[node name="IconFinder" parent="." node_paths=PackedStringArray("icons_renderers") instance=ExtResource("2_aqufi")]
+icons_renderers = []
 
 [connection signal="close_requested" from="." to="." method="hide"]
