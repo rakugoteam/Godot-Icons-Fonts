@@ -4,8 +4,10 @@ extends RichTextLabel
 
 @export_enum("MaterialIcons", "Emojis", "GameIcons")
 var icon_font := "MaterialIcons"
+@export_range(0.1, 1.0, 0.1) var render_time := 0.1
+@export var size_slider: Slider
 
-var size_slider: Slider
+var first := true
 
 func get_font_data() -> Dictionary:
 	var data := {}
@@ -22,6 +24,17 @@ func get_icon(key:String) -> String:
 		"Emojis": return str(IconsFonts.emojis[key])
 	
 	return ""
+
+func setup():
+	visibility_changed.connect(_on_first)
+
+func _on_first():
+	if not visible: return
+	if not first: return
+	first = false
+	await get_tree().create_timer(render_time).timeout
+	set_meta_underline(false)
+	update_table()
 
 func update_table(filter := ""):
 	var table = "[table={columns}, {inline_align}]"

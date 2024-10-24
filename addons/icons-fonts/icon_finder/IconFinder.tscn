@@ -99,7 +99,7 @@ current_tab = 0
 clip_tabs = false
 tabs_visible = false
 
-[node name="MaterialIcons" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs"]
+[node name="MaterialIcons" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs" node_paths=PackedStringArray("size_slider")]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -113,9 +113,10 @@ autowrap_mode = 0
 meta_underlined = false
 threaded = true
 script = ExtResource("3_hobrt")
+size_slider = NodePath("../../../SliderContainer/HSlider")
 metadata/_tab_index = 0
 
-[node name="Emojis" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs"]
+[node name="Emojis" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs" node_paths=PackedStringArray("size_slider")]
 visible = false
 clip_contents = false
 layout_mode = 2
@@ -132,4 +133,6 @@ meta_underlined = false
 threaded = true
 script = ExtResource("3_hobrt")
 icon_font = "Emojis"
+render_time = 0.2
+size_slider = NodePath("../../../SliderContainer/HSlider")
 metadata/_tab_index = 1

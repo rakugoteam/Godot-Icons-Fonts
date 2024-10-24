@@ -1,7 +1,7 @@
 @tool
 extends Control
 
-@export var icons_renderers: Array[RichTextLabel]
+@export var icons_renderers: Array[IconsFontsRender]
 
 @export var tooltip := "click on icon to copy its name to clipboard"
 
@@ -32,27 +32,18 @@ var scroll_bar_v: ScrollBar:
 var scroll_bar_h: ScrollBar:
 	get: return scroll_container.get_h_scroll_bar()
 
-var icons_renderer: RichTextLabel
+var icons_renderer: IconsFontsRender
 
 func _ready():
 	notify_label.hide()
 	search_line_edit.text_changed.connect(update_table)
-
-	for renderer in icons_renderers:
-		renderer.set_meta_underline(false)
-		renderer.tooltip_text = tooltip
-		renderer.size_slider = size_slider
-
 	size_slider.value_changed.connect(update_icons_size)
+	fonts_dropdown.item_selected.connect(on_font_changed)
 	size_slider.value = IconsFonts.preview_size
 
-	fonts_dropdown.item_selected.connect(on_font_changed)
-	
-	await IconsFonts.font_loaded == "MaterialIcons"
-	await IconsFonts.font_loaded == "Emojis"
-	await on_font_changed(0)
-	await update_icons_size(size_slider.value)
-	update_table()
+	for renderer: IconsFontsRender in icons_renderers:
+		renderer.tooltip_text = tooltip
+		renderer.setup()
 
 func _on_finished():
 	scroll_bar_h.max_value = icons_renderer.size.y
