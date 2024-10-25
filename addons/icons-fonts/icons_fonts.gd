@@ -11,7 +11,7 @@ const icon_finder_scene := icon_finder_dir + "IconFinder.tscn"
 var command_palette := get_editor_interface().get_command_palette()
 var editor_interface := get_editor_interface().get_base_control()
 var icon_finder_window: Window
-var icon_finder: Panel
+var icon_finder: Control
 var popup_size := Vector2i(775, 400)
 
 var commands := [
@@ -40,6 +40,9 @@ func help():
 func add_to_dock():
 	icon_finder = load(icon_finder_scene).instantiate()
 	add_control_to_bottom_panel(icon_finder, "Icons Finder")
+	await icon_finder.ready
+	icon_finder.setup()
+	icon_finder.custom_minimum_size = popup_size
 
 func show_icon_finder():
 	remove_control_from_bottom_panel(icon_finder)
@@ -49,6 +52,8 @@ func show_icon_finder():
 	if icon_finder_window == null:
 		icon_finder_window = load(icon_finder_window_scene).instantiate()
 		editor_interface.add_child.call_deferred(icon_finder_window)
+		await icon_finder.ready
+		icon_finder_window.setup()
 	
 	icon_finder_window.theme = editor_interface.theme
 	icon_finder_window.popup_centered(popup_size)

@@ -7,6 +7,9 @@ var icon_font := "MaterialIcons"
 @export_range(0.1, 1.0, 0.1) var render_time := 0.1
 @export var size_slider: Slider
 
+func set_icons_size(value:int):
+	set("theme_override_font_sizes/normal_font_size", value)
+
 func get_font_data() -> Dictionary:
 	var data := {}
 	match icon_font:
@@ -24,8 +27,8 @@ func get_icon(key:String) -> String:
 	return ""
 
 func setup():
-	await get_tree().create_timer(render_time).timeout
 	set_meta_underline(false)
+	await get_tree().create_timer(render_time).timeout
 	update_table()
 
 func update_table(filter := ""):

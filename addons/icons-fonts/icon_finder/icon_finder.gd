@@ -43,6 +43,9 @@ func _ready():
 
 	for renderer: IconsFontsRender in icons_renderers:
 		renderer.tooltip_text = tooltip
+
+func setup():
+	for renderer: IconsFontsRender in icons_renderers:
 		renderer.setup()
 
 func _on_finished():
@@ -52,7 +55,7 @@ func _on_finished():
 func update_icons_size(value: int):
 	size_label.text = str(value)
 	if icons_renderer:
-		icons_renderer.add_theme_font_size_override("normal", value)
+		icons_renderer.set_icons_size(value)
 		update_table(search_line_edit.text)
 	IconsFonts.preview_size = value
 
@@ -63,8 +66,7 @@ func on_font_changed(font_id: int):
 
 	icons_renderers_tabs.current_tab = font_id
 	icons_renderer = icons_renderers[font_id]
-	icons_renderer.add_theme_font_size_override(
-		"normal", IconsFonts.preview_size)
+	icons_renderer.set_icons_size(IconsFonts.preview_size)
 
 	icons_renderer.meta_clicked.connect(_on_meta)
 	icons_renderer.finished.connect(_on_finished)

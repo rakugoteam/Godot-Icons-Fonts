@@ -133,6 +133,5 @@ meta_underlined = false
 threaded = true
 script = ExtResource("3_hobrt")
 icon_font = "Emojis"
-render_time = 0.2
 size_slider = NodePath("../../../SliderContainer/HSlider")
 metadata/_tab_index = 1
