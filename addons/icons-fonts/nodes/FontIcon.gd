@@ -2,14 +2,15 @@
 @icon("res://addons/icons-fonts/nodes/FontIcon.svg")
 extends Label
 
-# todo add descreption and docs links when ready
+# todo add description and docs links when ready
 ## Don't change LabelSettings value in this node!
 class_name FontIcon
 
 @export var icon_settings := FontIconSettings.new():
 	set(value):
 		icon_settings = value
-		icon_settings.changed.connect(_on_icon_settings_changed)
+		if !icon_settings.changed.connect(_on_icon_settings_changed):
+			icon_settings.changed.connect(_on_icon_settings_changed)
 		icon_settings.emit_changed()
 
 func _ready():

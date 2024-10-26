@@ -2,7 +2,7 @@
 @icon("res://addons/icons-fonts/nodes/FontIconButton.svg")
 extends ButtonContainer
 
-# todo add descreption and docs links when ready
+# todo add description and docs links when ready
 class_name FontIconButton
 
 @export var icon_settings := FontIconSettings.new():
@@ -38,6 +38,7 @@ var _box: BoxContainer
 var _margins: MarginContainer
 
 func _ready():
+	if get_child_count() != 0: return
 	var empty_style := StyleBoxEmpty.new()
 	_box = BoxContainer.new()
 	_font_icon = FontIcon.new()

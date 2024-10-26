@@ -2,7 +2,7 @@
 @icon("res://addons/custom-ui-elements/nodes/ButtonContainer.svg")
 extends PanelContainer
 
-# todo add descreption and docs links when ready
+# todo add description and docs links when ready
 class_name ButtonContainer
 
 ## Emitted when button is pressed
@@ -120,7 +120,8 @@ func _gui_input(event: InputEvent) -> void:
 				_togglef(null, t)
 				
 				if button_group:
-					get_tree().call_group(button_group, "_togglef", self, !t)
+					get_tree().call_group(
+						button_group, "_togglef", self, !t)
 					return
 			
 			pressed.emit()

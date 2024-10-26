@@ -41,8 +41,8 @@ func add_to_dock():
 	icon_finder = load(icon_finder_scene).instantiate()
 	add_control_to_bottom_panel(icon_finder, "Icons Finder")
 	await icon_finder.ready
-	icon_finder.setup()
 	icon_finder.custom_minimum_size = popup_size
+	icon_finder.setup()
 
 func show_icon_finder():
 	remove_control_from_bottom_panel(icon_finder)
@@ -53,6 +53,7 @@ func show_icon_finder():
 		icon_finder_window = load(icon_finder_window_scene).instantiate()
 		editor_interface.add_child.call_deferred(icon_finder_window)
 		await icon_finder.ready
+		icon_finder.custom_minimum_size = popup_size
 		icon_finder_window.setup()
 	
 	icon_finder_window.theme = editor_interface.theme

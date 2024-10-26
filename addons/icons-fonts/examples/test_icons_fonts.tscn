@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://casymgu2sqx81"]
+[gd_scene load_steps=14 format=3 uid="uid://casymgu2sqx81"]
 
 [ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="1_vhsqm"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="2_fd237"]
 [ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_jajcj"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="4_5ca3b"]
-[ext_resource type="Script" path="res://addons/custom-ui-elements/nodes/ButtonContainer.gd" id="5_dgwom"]
+[ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_qfxwr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fw4y0"]
 font = ExtResource("1_vhsqm")
@@ -25,18 +25,6 @@ shadow_color = Color(1, 1, 1, 1)
 shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x2gj"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
-
 [sub_resource type="Resource" id="Resource_28mvn"]
 script = ExtResource("3_jajcj")
 icon_font = "MaterialIcons"
@@ -50,6 +38,44 @@ shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6nmg6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scswg"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Resource" id="Resource_6xgeb"]
+script = ExtResource("3_jajcj")
+icon_font = "MaterialIcons"
+icon_name = "toggle-switch-variant-off"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_7vk3f"]
+script = ExtResource("3_jajcj")
+icon_font = "MaterialIcons"
+icon_name = "toggle-switch-variant"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mmhoi"]
 
 [node name="TestIconsFonts" type="HFlowContainer"]
 anchors_preset = 15
@@ -67,37 +93,19 @@ label_settings = SubResource("LabelSettings_fw4y0")
 script = ExtResource("2_fd237")
 icon_settings = SubResource("Resource_a0w4j")
 
-[node name="ButtonContainer" type="PanelContainer" parent="."]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1x2gj")
-script = ExtResource("5_dgwom")
-
-[node name="MarginContainer" type="MarginContainer" parent="ButtonContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="BoxContainer" type="BoxContainer" parent="ButtonContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="FontIcon" type="Label" parent="ButtonContainer/MarginContainer/BoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 7
-text = "󰥶"
-label_settings = SubResource("LabelSettings_fw4y0")
-script = ExtResource("2_fd237")
-icon_settings = SubResource("Resource_a0w4j")
-
-[node name="Label" type="Label" parent="ButtonContainer/MarginContainer/BoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 7
-text = "Jakiś tekst"
-
 [node name="FontIconButton" type="PanelContainer" parent="."]
 layout_mode = 2
 script = ExtResource("4_5ca3b")
 icon_settings = SubResource("Resource_28mvn")
 text = "Jakiś Text"
 label_settings = SubResource("LabelSettings_6nmg6")
+
+[node name="FontIconCheckButton" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_scswg")
+script = ExtResource("5_qfxwr")
+off_icon_settings = SubResource("Resource_6xgeb")
+icon_settings = SubResource("Resource_7vk3f")
+text = "Toggle"
+label_settings = SubResource("LabelSettings_mmhoi")
+toggle_mode = true
