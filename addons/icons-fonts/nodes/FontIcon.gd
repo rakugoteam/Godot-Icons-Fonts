@@ -9,7 +9,7 @@ class_name FontIcon
 @export var icon_settings := FontIconSettings.new():
 	set(value):
 		icon_settings = value
-		if !icon_settings.changed.connect(_on_icon_settings_changed):
+		if !icon_settings.changed.is_connected(_on_icon_settings_changed):
 			icon_settings.changed.connect(_on_icon_settings_changed)
 		icon_settings.emit_changed()
 

@@ -97,7 +97,7 @@ icon_settings = SubResource("Resource_a0w4j")
 layout_mode = 2
 script = ExtResource("4_5ca3b")
 icon_settings = SubResource("Resource_28mvn")
-text = "Jakiś Text"
+label_text = "Jakiś Tekst"
 label_settings = SubResource("LabelSettings_6nmg6")
 
 [node name="FontIconCheckButton" type="PanelContainer" parent="."]
@@ -106,6 +106,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_scswg")
 script = ExtResource("5_qfxwr")
 off_icon_settings = SubResource("Resource_6xgeb")
 icon_settings = SubResource("Resource_7vk3f")
-text = "Toggle"
+label_text = "Toogle"
 label_settings = SubResource("LabelSettings_mmhoi")
 toggle_mode = true

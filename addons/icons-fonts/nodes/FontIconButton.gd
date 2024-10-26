@@ -11,12 +11,14 @@ class_name FontIconButton
 		if !is_node_ready(): await ready
 		_font_icon.icon_settings = value
 
-@export var text := "":
+@export_group("Label", "label_")
+@export var label_text := "":
 	set(value):
-		text = value
+		label_text = value
 		if !is_node_ready(): await ready
-		_label.text = text
+		_label.text = label_text
 
+@export_group("Label", "label_")
 @export var label_settings := LabelSettings.new():
 	set(value):
 		label_settings = value

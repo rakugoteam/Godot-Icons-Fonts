@@ -46,6 +46,7 @@ func _ready():
 
 func setup():
 	for renderer: IconsFontsRender in icons_renderers:
+		if !renderer.is_node_ready(): await ready
 		renderer.setup()
 
 func _on_finished():
