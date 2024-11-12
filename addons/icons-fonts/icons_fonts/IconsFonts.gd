@@ -77,8 +77,6 @@ func get_icon_code(font: String, id: String) -> int:
 		"MaterialIcons":
 			if id in material_icons:
 				return material_icons[id]
-			
-		"GameIcons": pass
 	
 	push_warning("Icon '%s' in font %s not found." % [font, id])
 	return 0
@@ -98,8 +96,6 @@ func get_icon_char(font: String, id: String) -> String:
 			
 			"Emojis":
 				return get_emoji_unicode(id)
-					
-			"GameIcons": pass
 		
 		return ""
 

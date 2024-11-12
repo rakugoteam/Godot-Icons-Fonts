@@ -4,7 +4,7 @@ class_name FontIconSettings
 extends Resource
 
 # dosn't work yet!
-@export_enum("MaterialIcons", "Emojis", "GameIcons")
+@export_enum("MaterialIcons", "Emojis")
 var icon_font := "MaterialIcons"
 
 ## Name of Icon to display

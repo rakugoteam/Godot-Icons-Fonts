@@ -1,9 +1,9 @@
 @tool
 @icon("res://addons/icons-fonts/nodes/FontIconButton.svg")
-extends ButtonContainer
 
 # todo add description and docs links when ready
 class_name FontIconButton
+extends ButtonContainer
 
 @export var icon_settings := FontIconSettings.new():
 	set(value):

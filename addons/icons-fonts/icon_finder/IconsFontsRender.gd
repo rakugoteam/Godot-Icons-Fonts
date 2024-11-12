@@ -2,7 +2,7 @@
 class_name IconsFontsRender
 extends RichTextLabel
 
-@export_enum("MaterialIcons", "Emojis", "GameIcons")
+@export_enum("MaterialIcons", "Emojis")
 var icon_font := "MaterialIcons"
 @export_range(0.1, 1.0, 0.1) var render_time := 0.1
 @export var size_slider: Slider
