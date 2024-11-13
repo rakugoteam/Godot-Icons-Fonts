@@ -2,6 +2,7 @@
 class_name IconsFontsRender
 extends RichTextLabel
 
+@export var start_size := 1065
 @export_enum("MaterialIcons", "Emojis")
 var icon_font := "MaterialIcons"
 @export_range(0.1, 1.0, 0.1) var render_time := 0.1
@@ -34,6 +35,12 @@ func setup():
 func update_table(filter := ""):
 	var table = "[table={columns}, {inline_align}]"
 	var columns := int(size.x / size_slider.value) + 1
+	if columns == 1: 
+		# size.x on start gives me 8, so columns equals 1
+		# so I add new fallback var start_size = 1056,
+		# which is size.x after when it works
+		columns = int(start_size / size_slider.value) + 1
+	
 	table = table.format({
 		"columns": columns,
 		"inline_align": INLINE_ALIGNMENT_CENTER
