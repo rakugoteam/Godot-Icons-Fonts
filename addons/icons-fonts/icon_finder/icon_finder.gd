@@ -67,11 +67,9 @@ func on_font_changed(font_id: int):
 
 	icons_renderers_tabs.current_tab = font_id
 	icons_renderer = icons_renderers[font_id]
-	icons_renderer.set_icons_size(IconsFonts.preview_size)
 
 	icons_renderer.meta_clicked.connect(_on_meta)
 	icons_renderer.finished.connect(_on_finished)
-	update_table(search_line_edit.text)
 
 func update_table(filter := ""):
 	if not icons_renderer: return

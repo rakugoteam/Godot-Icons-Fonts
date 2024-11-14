@@ -2,13 +2,15 @@
 class_name IconsFontsRender
 extends RichTextLabel
 
-@export var start_size := 1065
 @export_enum("MaterialIcons", "Emojis")
 var icon_font := "MaterialIcons"
-@export_range(0.1, 1.0, 0.1) var render_time := 0.1
+
+@export var start_size := 1065
 @export var size_slider: Slider
+@export var search_line_edit : LineEdit
 
 func set_icons_size(value:int):
+	IconsFonts.preview_size = value
 	set("theme_override_font_sizes/normal_font_size", value)
 
 func get_font_data() -> Dictionary:
@@ -27,19 +29,26 @@ func get_icon(key:String) -> String:
 	
 	return ""
 
+func _ready() -> void:
+	visibility_changed.connect(_on_visibility_changed)
+
+func _on_visibility_changed():
+	if visible:
+		set_icons_size(IconsFonts.preview_size)
+		update_table(search_line_edit.text)
+
 func setup():
 	set_meta_underline(false)
-	await get_tree().create_timer(render_time).timeout
-	update_table()
+	set_icons_size(IconsFonts.preview_size)
 
 func update_table(filter := ""):
 	var table = "[table={columns}, {inline_align}]"
-	var columns := int(size.x / size_slider.value) + 1
-	if columns == 1: 
-		# size.x on start gives me 8, so columns equals 1
+	var columns := int(size.x / IconsFonts.preview_size) + 1
+	if columns <= 1: 
+		# size.x on start gives me 8 and slider.value is 16, so columns equals 1
 		# so I add new fallback var start_size = 1056,
 		# which is size.x after when it works
-		columns = int(start_size / size_slider.value) + 1
+		columns = int(start_size / IconsFonts.preview_size) + 1
 	
 	table = table.format({
 		"columns": columns,
