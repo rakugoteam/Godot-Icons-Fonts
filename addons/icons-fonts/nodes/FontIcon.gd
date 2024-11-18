@@ -1,14 +1,15 @@
 @tool
 @icon("res://addons/icons-fonts/nodes/FontIcon.svg")
-extends Label
 
 # todo add description and docs links when ready
 ## Don't change LabelSettings value in this node!
 class_name FontIcon
+extends Label
 
 @export var icon_settings := FontIconSettings.new():
 	set(value):
 		icon_settings = value
+		if !is_node_ready(): await ready
 		if !icon_settings.changed.is_connected(_on_icon_settings_changed):
 			icon_settings.changed.connect(_on_icon_settings_changed)
 		icon_settings.emit_changed()
