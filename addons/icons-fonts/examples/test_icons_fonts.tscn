@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://casymgu2sqx81"]
+[gd_scene load_steps=15 format=3 uid="uid://casymgu2sqx81"]
 
 [ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="1_vhsqm"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="2_fd237"]
@@ -51,7 +51,19 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="Resource" id="Resource_6xgeb"]
+[sub_resource type="Resource" id="Resource_4h20x"]
+script = ExtResource("3_jajcj")
+icon_font = "MaterialIcons"
+icon_name = "toggle-switch-variant"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_avnl7"]
 script = ExtResource("3_jajcj")
 icon_font = "MaterialIcons"
 icon_name = "toggle-switch-variant-off"
@@ -66,7 +78,7 @@ shadow_offset = Vector2(0, 0)
 [sub_resource type="Resource" id="Resource_7vk3f"]
 script = ExtResource("3_jajcj")
 icon_font = "MaterialIcons"
-icon_name = "toggle-switch-variant"
+icon_name = "image-outline"
 icon_size = 16
 icon_color = Color(1, 1, 1, 1)
 outline_color = Color(1, 1, 1, 1)
@@ -104,7 +116,8 @@ label_settings = SubResource("LabelSettings_6nmg6")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_scswg")
 script = ExtResource("5_qfxwr")
-off_icon_settings = SubResource("Resource_6xgeb")
+on_icon_settings = SubResource("Resource_4h20x")
+off_icon_settings = SubResource("Resource_avnl7")
 icon_settings = SubResource("Resource_7vk3f")
 label_text = "Toogle"
 label_settings = SubResource("LabelSettings_mmhoi")
