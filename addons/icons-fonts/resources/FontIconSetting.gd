@@ -3,7 +3,6 @@
 class_name FontIconSettings
 extends Resource
 
-# dosn't work yet!
 @export_enum("MaterialIcons", "Emojis")
 var icon_font := "MaterialIcons"
 
@@ -31,7 +30,6 @@ var icon_size := 16:
 		outline_color = value
 		emit_changed()
 
-@export_group("Icon Outline", "outline_")
 @export var outline_size := 0:
 	set(value):
 		outline_size = value
@@ -43,13 +41,11 @@ var icon_size := 16:
 		shadow_color = value
 		emit_changed()
 
-@export_group("Icon Shadow", "shadow_")
 @export var shadow_size := 0:
 	set(value):
 		shadow_size = value
 		emit_changed()
 
-@export_group("Icon Shadow", "shadow_")
 @export var shadow_offset := Vector2.ZERO:
 	set(value):
 		shadow_offset = value

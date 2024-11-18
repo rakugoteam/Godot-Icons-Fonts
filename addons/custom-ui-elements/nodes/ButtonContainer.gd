@@ -51,20 +51,16 @@ var _toggled := false:
 		if !disabled or !button_pressed:
 			_change_stylebox("normal")
 
-@export_group("Styles", "style_")
 @export var style_focus: StyleBox
 
-@export_group("Styles", "style_")
 @export var style_pressed: StyleBox:
 	set(value):
 		style_pressed = value
 		if !disabled and button_pressed:
 			_change_stylebox("pressed")
 
-@export_group("Styles", "style_")
 @export var style_hover: StyleBox
 
-@export_group("Styles", "style_")
 @export var style_disabled: StyleBox:
 	set(value):
 		style_disabled = value
