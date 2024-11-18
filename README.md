@@ -4,7 +4,7 @@
 
 # Godot Icons Fonts
 
-**Compatible with Godot 4.x**
+**Compatible with Godot 4.1**
 
 Makes easy to find and use icons from popular icon-fonts in your Godot project.
 
@@ -26,25 +26,35 @@ Makes easy to find and use icons from popular icon-fonts in your Godot project.
 	a collection of icons for the [Material Design](https://material.io/) specification.
 
 - [Google Noto Emojis Color font][noto-emoji]
-- [game-icons.net](https://github.com/toddfast/game-icons-net-font)
+<!-- - [game-icons.net](https://github.com/toddfast/game-icons-net-font) -->
 
 <!-- todo update to show new nodes and one example of each icons font included-->
 ![](.assets/addon-in-action.png)
 
 <!-- todo add link to docs when they are ready -->
 
-## Nodes and Singleton
+## Resource, Nodes and Singleton
 <!-- todo add screenshots, and how to use them -->
-This addon provides the following nodes to use the icons in Godot:
-- **FontIcon**: A node that displays an icon from any font included.
-- **FontIconButton**: A node that displays an icon from any font included with label.
+### Resource
+**FontIconSetting** - Resource for setting which and how to display FontIcon.
 
-**IconsDB** singleton for easier use of icons anywhere in your project.
+### Nodes
+- **FontIcon**: Control Node that displays IconFont.
+- **FontIconButton**: Button* That have IconFont and can have label.
+- **FontIconCheckButton**: CheckButton* That have IconFont and can have label.
+
+\* - This nodes behaves like button,
+but they don't extends from **Button**.
+
+### Singleton
+**IconsFonts** is singleton for easier use of icons anywhere in your project.
 
 ## In Editor
 
 <!-- todo add paragraph about dock mode by default -->
-It's also adds **IconsFinder** to the Godot's **Tools** menu.
+It's also adds **IconsFinder**.
+It can be in dock mode at bottom or in window mode.
+That can be switched in Godot's **Tools** menu.
 
 <!-- todo update -->
 ![](.assets/where-in-menu.png)
@@ -59,7 +69,6 @@ You can use the icons in RichTextLabel.
 
 ![](.assets/label-with-icon.png)
 
-***This dosen't work yet!***
 ```gdscript
 @tool
 extends RichTextLabel
