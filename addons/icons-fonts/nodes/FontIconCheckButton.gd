@@ -5,6 +5,13 @@ extends FontIconButton
 # todo add description and docs links when ready
 class_name FontIconCheckButton
 
+@export var toggle_on_right := true:
+	set(value):
+		toggle_on_right = value
+		if !is_node_ready(): await ready
+		if value: _box.move_child(_toggle_icon, 2)
+		else: _box.move_child(_toggle_icon, 0)
+
 @export var on_icon_settings := FontIconSettings.new():
 	set(value):
 		on_icon_settings = value
@@ -29,6 +36,8 @@ func _ready():
 	_toggle_icon = FontIcon.new()
 	_toggle_icon.add_theme_stylebox_override("normal", empty_style)
 	_box.add_child(_toggle_icon)
+
+	self.toggle_on_right = toggle_on_right
 
 func _togglef(main_button: ButtonContainer, value: bool):
 	if disabled: return
