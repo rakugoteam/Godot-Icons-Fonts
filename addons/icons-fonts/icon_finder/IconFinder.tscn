@@ -96,7 +96,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 current_tab = 0
-clip_tabs = false
 tabs_visible = false
 
 [node name="MaterialIcons" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/Tabs" node_paths=PackedStringArray("size_slider", "search_line_edit")]
@@ -108,6 +107,7 @@ tooltip_text = "click on icon to copy its name to clipboard"
 theme_override_fonts/normal_font = ExtResource("2_8e28h")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 meta_underlined = false
@@ -128,6 +128,7 @@ theme_override_fonts/normal_font = ExtResource("3_sggto")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "Loading"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 meta_underlined = false

@@ -26,12 +26,6 @@ extends Control
 @export
 @onready var fonts_dropdown: OptionButton
 
-var scroll_bar_v: ScrollBar:
-	get: return scroll_container.get_v_scroll_bar()
-
-var scroll_bar_h: ScrollBar:
-	get: return scroll_container.get_h_scroll_bar()
-
 var icons_renderer: IconsFontsRender
 
 func _ready():
@@ -43,15 +37,11 @@ func _ready():
 
 	for renderer: IconsFontsRender in icons_renderers:
 		renderer.tooltip_text = tooltip
-
+		
 func setup():
 	for renderer: IconsFontsRender in icons_renderers:
 		if !renderer.is_node_ready(): await ready
 		renderer.setup()
-
-func _on_finished():
-	scroll_bar_h.max_value = icons_renderer.size.y
-	scroll_bar_v.max_value = icons_renderer.size.x
 
 func update_icons_size(value: int):
 	size_label.text = str(value)
@@ -63,13 +53,11 @@ func update_icons_size(value: int):
 func on_font_changed(font_id: int):
 	if icons_renderer:
 		icons_renderer.meta_clicked.disconnect(_on_meta)
-		icons_renderer.finished.disconnect(_on_finished)
 
 	icons_renderers_tabs.current_tab = font_id
 	icons_renderer = icons_renderers[font_id]
 
 	icons_renderer.meta_clicked.connect(_on_meta)
-	icons_renderer.finished.connect(_on_finished)
 
 func update_table(filter := ""):
 	if not icons_renderer: return

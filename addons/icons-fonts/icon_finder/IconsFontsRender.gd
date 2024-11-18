@@ -44,7 +44,7 @@ func setup():
 func update_table(filter := ""):
 	var table = "[table={columns}, {inline_align}]"
 	var columns := int(size.x / IconsFonts.preview_size) + 1
-	if columns <= 1: 
+	if columns <= 10: 
 		# size.x on start gives me 8 and slider.value is 16, so columns equals 1
 		# so I add new fallback var start_size = 1056,
 		# which is size.x after when it works
