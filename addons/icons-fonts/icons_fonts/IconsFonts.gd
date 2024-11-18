@@ -78,7 +78,7 @@ func get_icon_code(font: String, id: String) -> int:
 			if id in material_icons:
 				return material_icons[id]
 	
-	push_warning("Icon '%s' in font %s not found." % [font, id])
+	push_warning("Icon '%s' in font %s not found." % [id, font])
 	return 0
 
 func get_emoji_unicode(id: String) -> String:
