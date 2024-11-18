@@ -49,7 +49,9 @@ var _box: BoxContainer
 var _margins: MarginContainer
 
 func _ready():
-	if get_child_count() != 0: return
+	for ch in get_children():
+		ch.queue_free()
+
 	var empty_style := StyleBoxEmpty.new()
 	_box = BoxContainer.new()
 	_font_icon = FontIcon.new()

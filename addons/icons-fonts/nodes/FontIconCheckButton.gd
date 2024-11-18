@@ -30,7 +30,9 @@ var _toggle_icon : FontIcon
 
 func _ready():
 	toggle_mode = true
-	if get_child_count() != 0: return
+	for ch in get_children():
+		ch.queue_free()
+
 	super._ready()
 	var empty_style := StyleBoxEmpty.new()
 	_toggle_icon = FontIcon.new()
@@ -44,6 +46,6 @@ func _togglef(main_button: ButtonContainer, value: bool):
 	if main_button == self: return
 	if radio_mode and _toggled: return
 
-	if value: _toggle_icon.icon_settings = icon_settings
+	if value: _toggle_icon.icon_settings = on_icon_settings
 	else: _toggle_icon.icon_settings = off_icon_settings
 	super._togglef(main_button, value)
