@@ -7,6 +7,7 @@ class_name ButtonContainer
 
 ## Emitted when button is pressed
 signal pressed
+
 ## Emitted when button is toggled
 ## Works only if `toggle_mode` is on.
 signal toggled(value: bool)
@@ -45,6 +46,13 @@ var _toggled := false:
 @export var button_group: StringName = ""
 
 @export_group("Styles", "style_")
+@export_enum("normal", "focus", "pressed", "hover", "disabled")
+var style_preview := "normal":
+	set(value):
+		if Engine.is_editor_hint():
+			style_preview = value
+			_change_stylebox(value)
+
 @export var style_normal: StyleBox:
 	set(value):
 		style_normal = value
@@ -67,49 +75,54 @@ var _toggled := false:
 		if disabled:
 			_change_stylebox("disabled")
 
+var current_style : String
+
 func connect_if_possible(sig: Signal, method: Callable):
 	if !sig.is_connected(method): sig.connect(method)
 
 func _ready() -> void:
 	_change_stylebox("normal")
-	
-	connect_if_possible(mouse_entered, func(): _change_stylebox("hover"))
+	connect_if_possible(mouse_entered, _on_mouse_entered)
 	connect_if_possible(mouse_exited, _on_mouse_exited)
 	
 	if button_group: add_to_group(button_group)
 
 func _on_mouse_exited():
-	if toggle_mode and _toggled:
-		_change_stylebox("pressed")
-		return
-
+	if disabled: return
+	if toggle_mode and _toggled: return
 	_change_stylebox("normal")
 
-func _change_stylebox(button_style: StringName = "normal"):
-	
-	prints("changed style to:", button_style)
-	var stylebox := get_theme_stylebox(button_style, "Button")
-	if button_style == "normal" and style_normal:
-		stylebox = style_normal
-	
-	elif button_style == "focus" and style_focus:
-		stylebox = style_focus
-	
-	elif button_style == "pressed" and style_pressed:
-		stylebox = style_pressed
-	
-	elif button_style == "hover" and style_hover:
-		stylebox = style_hover
-	
-	elif button_style == "disabled" and style_disabled:
-		stylebox = style_disabled
+func _on_mouse_entered():
+	if disabled: return
+	_change_stylebox("hover")
 
-	add_theme_stylebox_override("panel", stylebox)
+func _change_stylebox(button_style: StringName = "normal"):
+	# prints("changed style to:", button_style)
+	var stylebox := get_theme_stylebox(button_style, "Button")
+	match button_style:
+		"normal":
+			stylebox = style_normal if style_normal else stylebox
+		"focus":
+			stylebox = style_focus if style_focus else stylebox
+		"pressed":
+			stylebox = style_pressed if style_pressed else stylebox
+		"hover":
+			stylebox = style_hover if style_hover else stylebox
+		"disabled":
+			stylebox = style_disabled if style_disabled else stylebox
+
+	if current_style != button_style:
+		current_style = button_style
+		add_theme_stylebox_override("panel", stylebox)
 
 func _gui_input(event: InputEvent) -> void:
+# func _input(event: InputEvent) -> void:
 	if disabled: return
 	
 	if event is InputEventMouseButton:
+		# var rect := get_global_rect()
+		# rect.size = input_region
+		# if rect.has_point(get_global_mouse_position()):
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if toggle_mode:
 				var t := !_toggled
