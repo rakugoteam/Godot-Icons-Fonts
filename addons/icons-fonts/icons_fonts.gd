@@ -4,7 +4,8 @@ extends EditorPlugin
 
 const plugin_dir := "res://addons/icons-fonts/"
 const icons_db := plugin_dir + "icons_fonts/IconsFonts.gd"
-const icon_finder_dir := plugin_dir + "icon_finder/"
+const sub_dir := "icon_finder/"
+const icon_finder_dir := plugin_dir + sub_dir
 const icon_finder_window_scene := icon_finder_dir + "IconFinderWindow.tscn"
 const icon_finder_scene := icon_finder_dir + "IconFinder.tscn"
 
@@ -15,15 +16,26 @@ var icon_finder: Control
 var popup_size := Vector2i(775, 400)
 
 var commands := [
-	["Icon Finder Window", "icon_finder_window", show_icon_finder_window],
-	["Icon Finder Dock", "icon_finder_dock", add_to_dock],
+	[	
+		"Icon Finder Window",
+		sub_dir + "icon_finder_window",
+		show_icon_finder_window
+	],
+	[
+		"Icon Finder Dock",
+		sub_dir + "icon_finder_dock",
+		add_to_dock
+	],
 	# todo uncomment when docs are ready!
-	# ["IconsFonts Help", "icon_help", help],
+	# [
+	# 	"IconsFonts Help",
+	# 	sub_dir + "icon_help",
+	# 	help
+	# ],
 ]
 
 func _enter_tree():
 	add_autoload_singleton("IconsFonts", icons_db)
-
 	await IconsFonts.ready
 
 	if IconsFonts.is_docked:
