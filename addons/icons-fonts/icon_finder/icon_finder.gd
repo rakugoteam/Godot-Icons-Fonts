@@ -42,6 +42,7 @@ func setup():
 	for renderer: IconsFontsRender in icons_renderers:
 		if !renderer.is_node_ready(): await ready
 		renderer.setup()
+	icons_renderer = icons_renderers[0]
 
 func update_icons_size(value: int):
 	size_label.text = str(value)
