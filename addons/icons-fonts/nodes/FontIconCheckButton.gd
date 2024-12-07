@@ -59,8 +59,6 @@ func _get_lay_dict() -> Dictionary:
 	}
 
 func _validate_property(property : Dictionary) -> void:
-	# if property.name == &"layout_order":
-	# 	property.usage &= ~PROPERTY_USAGE_EDITOR
 	if property.name == &"layout_order":
 		property.hint_string = ",".join([
 			"Label-Icon-Toggle", "Label-Toggle-Icon",
