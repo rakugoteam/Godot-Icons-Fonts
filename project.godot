@@ -25,7 +25,7 @@ IconsFonts="*res://addons/icons-fonts/icons_fonts/IconsFonts.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/custom-ui-elements/plugin.cfg", "res://addons/icons-fonts/plugin.cfg")
+enabled=PackedStringArray("res://addons/custom-ui-elements/plugin.cfg", "res://addons/external_code/plugin.cfg", "res://addons/icons-fonts/plugin.cfg")
 
 [physics]
 

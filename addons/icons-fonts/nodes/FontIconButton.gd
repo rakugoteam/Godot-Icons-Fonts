@@ -5,14 +5,21 @@
 class_name FontIconButton
 extends ButtonContainer
 
-@export_group("Icon", "icon_")
-@export var icon_on_right := true:
+@export_group("Layout", "layout_")
+@export_enum("Label-Icon", "Icon-Label")
+var layout_order := "Label-Icon":
 	set(value):
-		icon_on_right = value
+		layout_order = value
 		if !is_node_ready(): await ready
-		if value: _box.move_child(_font_icon, 1)
-		else: _box.move_child(_font_icon, 0)
+		_set_order(value)
 
+@export var layout_vertical := true:
+	set(value):
+		layout_vertical = value
+		if !is_node_ready(): await ready
+		_box.vertical = value
+
+@export_group("Icon", "icon_")
 @export var icon_settings := FontIconSettings.new():
 	set(value):
 		icon_settings = value
@@ -48,23 +55,49 @@ var _label: Label
 var _box: BoxContainer
 var _margins: MarginContainer
 
+func _get_lay_dict() -> Dictionary:
+	return {
+		"Label": _label,
+		"Icon": _font_icon,
+	}
+
 func _ready():
-	for ch in get_children():
+	for ch: Control in get_children():
 		ch.queue_free()
 
 	var empty_style := StyleBoxEmpty.new()
 	_box = BoxContainer.new()
 	_font_icon = FontIcon.new()
 	_font_icon.add_theme_stylebox_override("normal", empty_style)
-	_box.add_child(_font_icon)
 
 	_label = Label.new()
 	_label.add_theme_stylebox_override("normal", empty_style)
-	_box.add_child(_label)
-
-	self.icon_on_right = icon_on_right
+	self.layout_order = layout_order
 
 	_margins = MarginContainer.new()
 	_margins.add_child(_box)
-
 	add_child(_margins)
+
+func _clear_box():
+	if _box.get_child_count() == 0: return
+	for ch: Control in _box.get_children():
+		_box.remove_child(ch)
+
+func _set_order(order:String):
+	_clear_box()
+	_apply_layout(_crate_layout(order))
+
+func _crate_layout(order:String) -> Array[Control]:
+	var layout: Array[Control] = []
+	var order_split := order.split("-")
+	var dict := _get_lay_dict()
+	for con in order_split:
+		layout.append(dict[con])
+	return layout
+
+func _apply_layout(layout: Array[Control]):
+	for control: Control in layout:
+		_box.add_child(control)
+		if control is FontIcon:
+			control.size_flags_horizontal\
+				= Control.SIZE_SHRINK_CENTER
