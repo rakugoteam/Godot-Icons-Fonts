@@ -9,8 +9,9 @@ export_presets.cfg
 mono_crash.*.*.json
 
 # Project specific
-addons/godot-plugin-refresher
+addons/external_code
 .directory
 .vscode/
 *.ini
 env
+py_env/
