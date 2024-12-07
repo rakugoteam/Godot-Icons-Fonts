@@ -5,19 +5,6 @@ extends FontIconButton
 # todo add description and docs links when ready
 class_name FontIconCheckButton
 
-# @export_group("Layout", "_layout_")
-# @export_enum(
-# 	"Label-Icon-Toggle", "Label-Toggle-Icon",
-# 	"Toggle-Label-Icon", "Toggle-Icon-Label",
-# 	"Icon-Label-Toggle", "Icon-Toggle-Label",
-# 	"Label-Toggle", "Toggle-Label",
-# )
-# var _layout_order := "FontIconButton-Toggle":
-# 	set(value):
-# 		_layout_order = value
-# 		if !is_node_ready(): await ready
-# 		_set_order(value)
-
 @export var on_icon_settings := FontIconSettings.new():
 	set(value):
 		on_icon_settings = value
