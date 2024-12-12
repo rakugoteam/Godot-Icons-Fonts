@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4nquc8rmh42g"
-path="res://.godot/imported/ButtonContainer.svg-b1004720ab025780a4b000964aec6ecc.ctex"
+path="res://.godot/imported/ButtonContainer.svg-2244ab290648c46839f5024e765ecf96.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/custom-ui-elements/nodes/ButtonContainer.svg"
-dest_files=["res://.godot/imported/ButtonContainer.svg-b1004720ab025780a4b000964aec6ecc.ctex"]
+source_file="res://addons/rakugo-nodes/nodes/ButtonContainer.svg"
+dest_files=["res://.godot/imported/ButtonContainer.svg-2244ab290648c46839f5024e765ecf96.ctex"]
 
 [params]
 
