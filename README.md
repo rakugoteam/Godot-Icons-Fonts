@@ -1,10 +1,8 @@
-# WIP! Don't use yet!
-
 ![github-top-lang][lang] ![lic] ![lic-font]
 
 # Godot Icons Fonts
 
-**Compatible with Godot 4.1**
+**Compatible with Godot 4.1+**
 
 Makes easy to find and use icons from popular icon-fonts in your Godot project.
 
@@ -21,20 +19,26 @@ Makes easy to find and use icons from popular icon-fonts in your Godot project.
 	- they don't work on some platforms for example Web
 	- they are outdated
 
-## Included Icons Fonts
+## Included
+
+### Dependencies
+- [Rakugo Nodes](https://github.com/Jeremi360/Rakugo-Nodes)
+
+### Icons Fonts
 - [*Templarian's Material-Design-Icons*](https://github.com/templarian/MaterialDesign),
 	a collection of icons for the [Material Design](https://material.io/) specification.
 
 - [Google Noto Emojis Color font][noto-emoji]
+<!-- feature versions: -->
 <!-- - [game-icons.net](https://github.com/toddfast/game-icons-net-font) -->
+<!-- - godot-icons -->
 
 <!-- todo update to show new nodes and one example of each icons font included-->
 ![](.assets/addon-in-action.png)
 
 <!-- todo add link to docs when they are ready -->
-
-## Resource, Nodes and Singleton
 <!-- todo add screenshots, and how to use them -->
+
 ### Resource
 **FontIconSetting** - Resource for setting which and how to display FontIcon.
 
