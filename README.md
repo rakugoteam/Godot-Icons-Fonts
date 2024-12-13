@@ -78,17 +78,17 @@ You can use the icons in RichTextLabel.
 extends RichTextLabel
 
 @export_multiline
-var text_with_icons : String:
+var text_with_icons: String:
 	set(value):
 		text_with_icons = value
 		bbcode_enabled = true
-		text = IconsFonts.parse_icons(value)
+		text = IconsFonts.parse_text(value)
 
 	get: return text_with_icons
 
 func _ready():
 	bbcode_enabled = true
-	text = IconsFonts.parse_icons(text_with_icons)
+	text = IconsFonts.parse_text(text_with_icons)
 ```
 
 ## Exporting
