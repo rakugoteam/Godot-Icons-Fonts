@@ -50,13 +50,6 @@ var _toggled := false:
 @export var button_group: StringName = ""
 
 @export_group("Styles", "style_")
-@export_enum("normal", "focus", "pressed", "hover", "disabled")
-var style_preview := "normal":
-	set(value):
-		if Engine.is_editor_hint():
-			style_preview = value
-			_change_stylebox(value)
-
 @export var style_normal: StyleBox:
 	set(value):
 		style_normal = value
