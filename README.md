@@ -4,7 +4,7 @@
 
 # Godot Icons Fonts
 
-**Compatible with Godot 4.1+**
+***Compatible with Godot 4.1+***
 
 Makes easy to find and use icons from popular icon-fonts in your Godot project.
 
@@ -113,6 +113,22 @@ func _ready():
 For emojis to work in exported projects,
 you need add `*.json` files to include files settings:
 ![](.assets/export.png)
+
+## Know Issues
+
+- Window mode is init with empty icons render
+- Sometimes click on icon doesn't copy it to clipboard
+
+To fix both of them just change back-and-forward to icon font you want to use
+
+## Compatibility
+This addon is replacing our previous to addons:
+- [Godot Material Icons](https://github.com/rakugoteam/Godot-Material-Icons)
+- [Emojis For Godot](https://github.com/rakugoteam/Emojis-For-Godot)
+We had broken backward compatibility with them for those reasons:
+- In feature we want to support more IconsFonts so we can use `[icon:icons-name]` in text parsing.
+- We redesigned how addon works under the hood
+- We had too rename nodes
 
 [lic]: https://img.shields.io/github/license/rakugoteam/Godot-Icons-Fonts?style=flat-square&label=📃%20License&
 [lang]: https://img.shields.io/github/languages/top/rakugoteam/Godot-Icons-Fonts?style=flat-square
