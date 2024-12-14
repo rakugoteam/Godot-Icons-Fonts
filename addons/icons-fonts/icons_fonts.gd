@@ -4,6 +4,7 @@ extends EditorPlugin
 
 const plugin_dir := "res://addons/icons-fonts/"
 const icons_db := plugin_dir + "icons_fonts/IconsFonts.gd"
+const inspector_plugin_path := plugin_dir + "inspector/font_icon_inspector.gd"
 const sub_dir := "icon_finder/"
 const icon_finder_dir := plugin_dir + sub_dir
 const icon_finder_window_scene := icon_finder_dir + "IconFinderWindow.tscn"
@@ -14,6 +15,7 @@ var editor_interface := get_editor_interface().get_base_control()
 var icon_finder_window: Window
 var icon_finder: Control
 var popup_size := Vector2i(775, 400)
+var inspector_plugin : EditorInspectorPlugin
 
 var commands := [
 	[	
@@ -34,16 +36,24 @@ var commands := [
 	# ],
 ]
 
+var icon_finder_loaded:PackedScene
+var icon_finder_window_loaded:PackedScene
+
 func _enter_tree():
 	add_autoload_singleton("IconsFonts", icons_db)
 	await IconsFonts.ready
+	icon_finder_loaded = load(icon_finder_scene)
+	icon_finder_window_loaded = load(icon_finder_window_scene)
 
-	if IconsFonts.is_docked:
-		await add_to_dock()
+	if IconsFonts.is_docked: await add_to_dock()
 
 	for command: Array in commands:
 		add_tool_menu_item(command[0], command[2])
 		command_palette.add_command(command[0], command[1], command[2])
+	
+	inspector_plugin = preload(inspector_plugin_path).new()
+	add_inspector_plugin(inspector_plugin)
+
 
 func help():
 	# todo update when docs are ready!
@@ -52,10 +62,10 @@ func help():
 
 func add_to_dock():
 	if icon_finder_window:
-		icon_finder_window.queue_free()
+		editor_interface.remove_child.call_deferred(icon_finder_window)
 	
 	IconsFonts.is_docked = true
-	icon_finder = load(icon_finder_scene).instantiate()
+	icon_finder = icon_finder_loaded.instantiate()
 	add_control_to_bottom_panel(icon_finder, "Icons Finder")
 	if !icon_finder.is_node_ready(): await ready
 	await icon_finder.setup()
@@ -63,11 +73,10 @@ func add_to_dock():
 func show_icon_finder_window():
 	if icon_finder:
 		remove_control_from_bottom_panel(icon_finder)
-		icon_finder.queue_free()
 	
 	IconsFonts.is_docked = false
-	if icon_finder_window == null:
-		icon_finder_window = load(icon_finder_window_scene).instantiate()
+	if !icon_finder_window:
+		icon_finder_window = icon_finder_window_loaded.instantiate()
 		editor_interface.add_child.call_deferred(icon_finder_window)
 		if !icon_finder_window.is_node_ready(): await ready
 
@@ -75,6 +84,9 @@ func show_icon_finder_window():
 	icon_finder_window.popup_centered(popup_size)
 
 func _exit_tree():
+	if inspector_plugin:
+		remove_inspector_plugin(inspector_plugin)
+
 	for command: Array in commands:
 		remove_tool_menu_item(command[0])
 		command_palette.remove_command(command[0])
@@ -86,4 +98,5 @@ func _exit_tree():
 		icon_finder.queue_free()
 
 	if icon_finder_window:
+		editor_interface.remove_child.call_deferred(icon_finder_window)
 		icon_finder_window.queue_free()

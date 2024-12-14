@@ -53,7 +53,8 @@ func update_icons_size(value: int):
 
 func on_font_changed(font_id: int):
 	if icons_renderer:
-		icons_renderer.meta_clicked.disconnect(_on_meta)
+		if icons_renderer.meta_clicked.is_connected(_on_meta):
+			icons_renderer.meta_clicked.disconnect(_on_meta)
 
 	icons_renderers_tabs.current_tab = font_id
 	icons_renderer = icons_renderers[font_id]

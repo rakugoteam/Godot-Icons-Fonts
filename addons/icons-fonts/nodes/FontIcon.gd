@@ -28,3 +28,7 @@ func _on_icon_settings_changed():
 		icon_settings.icon_font,
 		icon_settings.icon_name
 	)
+
+func _validate_property(property : Dictionary) -> void:
+	if property.name in [&"text", &"label_settings"]:
+		property.usage &= ~PROPERTY_USAGE_EDITOR

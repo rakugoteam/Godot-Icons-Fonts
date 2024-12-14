@@ -17,7 +17,7 @@ run/main_scene="res://addons/icons-fonts/icon_finder/IconFinder.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.png"
 addons/icon_finder/preview_size=16
-addons/icon_finder/is_docked=false
+addons/icon_finder/is_docked=true
 
 [autoload]
 
@@ -25,7 +25,7 @@ IconsFonts="*res://addons/icons-fonts/icons_fonts/IconsFonts.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/custom-ui-elements/plugin.cfg", "res://addons/external_code/plugin.cfg", "res://addons/icons-fonts/plugin.cfg")
+enabled=PackedStringArray("res://addons/external_code/plugin.cfg", "res://addons/icons-fonts/plugin.cfg", "res://addons/rakugo-nodes/plugin.cfg")
 
 [physics]
 

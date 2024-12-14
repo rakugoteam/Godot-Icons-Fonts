@@ -12,15 +12,19 @@ signal pressed
 ## Works only if `toggle_mode` is on.
 signal toggled(value: bool)
 
+signal state_changed(state_name: StringName)
+
 ## If true, button will be disabled
 @export var disabled := false:
 	set(value):
 		disabled = value
 		if disabled:
 			_change_stylebox("disabled")
+			state_changed.emit(&"disabled")
 			return
 		
 		_change_stylebox("normal")
+		state_changed.emit(&"normal")
 
 ## If true, button will be in toggle mode
 @export var toggle_mode := false
@@ -46,13 +50,6 @@ var _toggled := false:
 @export var button_group: StringName = ""
 
 @export_group("Styles", "style_")
-@export_enum("normal", "focus", "pressed", "hover", "disabled")
-var style_preview := "normal":
-	set(value):
-		if Engine.is_editor_hint():
-			style_preview = value
-			_change_stylebox(value)
-
 @export var style_normal: StyleBox:
 	set(value):
 		style_normal = value
@@ -82,6 +79,7 @@ func connect_if_possible(sig: Signal, method: Callable):
 
 func _ready() -> void:
 	_change_stylebox("normal")
+	state_changed.emit(&"normal")
 	connect_if_possible(mouse_entered, _on_mouse_entered)
 	connect_if_possible(mouse_exited, _on_mouse_exited)
 	
@@ -91,10 +89,12 @@ func _on_mouse_exited():
 	if disabled: return
 	if toggle_mode and _toggled: return
 	_change_stylebox("normal")
+	state_changed.emit(&"normal")
 
 func _on_mouse_entered():
 	if disabled: return
 	_change_stylebox("hover")
+	state_changed.emit(&"hover")
 
 func _change_stylebox(button_style: StringName = "normal"):
 	# prints("changed style to:", button_style)
@@ -116,13 +116,8 @@ func _change_stylebox(button_style: StringName = "normal"):
 		add_theme_stylebox_override("panel", stylebox)
 
 func _gui_input(event: InputEvent) -> void:
-# func _input(event: InputEvent) -> void:
 	if disabled: return
-	
 	if event is InputEventMouseButton:
-		# var rect := get_global_rect()
-		# rect.size = input_region
-		# if rect.has_point(get_global_mouse_position()):
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if toggle_mode:
 				var t := !_toggled
@@ -134,7 +129,7 @@ func _gui_input(event: InputEvent) -> void:
 					return
 			
 			pressed.emit()
-			# print("pressed")
+			state_changed.emit(&"pressed")
 
 func _togglef(main_button: ButtonContainer, value: bool):
 	if disabled: return
@@ -142,7 +137,11 @@ func _togglef(main_button: ButtonContainer, value: bool):
 	if radio_mode and _toggled: return
 
 	_toggled = value
-	if value: _change_stylebox("pressed")
-	else: _change_stylebox("normal")
+	if value:
+		_change_stylebox("pressed")
+		state_changed.emit(&"pressed")
+	else:
+		_change_stylebox("normal")
+		state_changed.emit(&"normal")
 
 	toggled.emit(_toggled)

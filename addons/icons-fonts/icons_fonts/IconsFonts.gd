@@ -30,15 +30,25 @@ static var preview_size: int:
 		return ProjectSettings.get_setting(prev_size_setting_path, 24)
 
 func _ready():
-	var json := JSON.new()
-	var content = get_file_content(material_icons_json)
-	if json.parse(content) == OK:
+	var json: JSON
+	var content: String
+	if Engine.is_editor_hint():
+		json = load(material_icons_json)
 		init_material_icons_dict(json.data)
+	else:
+		json = JSON.new()
+		content = get_file_content(material_icons_json)
+		if json.parse(content) == OK:
+			init_material_icons_dict(json.data)
 	
-	json = JSON.new()
-	content = get_file_content(emojis_json)
-	if json.parse(content) == OK:
+	if Engine.is_editor_hint():
+		json = load(emojis_json)
 		init_emoji_dictionaries(json.data)
+	else:
+		json = JSON.new()
+		content = get_file_content(emojis_json)
+		if json.parse(content) == OK:
+			init_emoji_dictionaries(json.data)
 	
 func get_file_content(path: String) -> String:
 	var file := FileAccess.open(path, FileAccess.READ)
@@ -109,9 +119,8 @@ func parse_text(text: String) -> String:
 	# todo add game-icons parse
 	return text
 
-## will replace [mi:icon_name] to [font=MaterialIcons]icon_char[/font]
+## will replace [mi:icon_name] with [font=MaterialIcons]icon_char[/font]
 func parse_material_icons(text: String) -> String:
-
 	var regex = RegEx.new()
 	regex.compile("\\[mi:(.*?)\\]")
 	var x = regex.search(text)
@@ -140,6 +149,7 @@ func get_emoji_bbcode(id: String, size := 0) -> String:
 	
 	return "[font_size=%s]%s[/font_size]" % [size, bbcode]
 
+## will replace :emoji_name: with [font=Emojis]emoji_char[/font]
 func parse_emojis(text: String):
 	var re = RegEx.new()
 	re.compile(":[\\w\\d]+(,\\s*\\d+)?:")
