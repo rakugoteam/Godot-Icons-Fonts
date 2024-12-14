@@ -10,16 +10,16 @@ Makes easy to find and use icons from popular icon-fonts in your Godot project.
 
 ## What problems it solves:
 
-- You only needs this addon - as you don't have:
-	1. to go online find font
-	1. then find icon
-	1. check icon licence - and maybe you need to search for another
-	1. finally download it
+### You only needs this addon - as you don't have:
+1. to go online find font
+1. then find icon
+1. check icon licence - and maybe you need to search for another
+1. finally download it
 
-- Better alterative to Godot's build emojis as:
-	- to use them you need to find unicode online
-	- they don't work on some platforms for example Web
-	- they are outdated
+### Better alterative to Godot's build emojis as
+- to use them you need to find unicode online
+- they don't work on some platforms for example Web
+- they are outdated
 
 ## Included
 
