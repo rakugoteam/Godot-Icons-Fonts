@@ -10,16 +10,16 @@ Makes easy to find and use icons from popular icon-fonts in your Godot project.
 
 ## What problems it solves:
 
-- You only needs this addon - as you don't have:
-	1. to go online find font
-	1. then find icon
-	1. check icon licence - and maybe you need to search for another
-	1. finally download it
+### You only needs this addon - as you don't have:
+1. to go online find font
+1. then find icon
+1. check icon licence - and maybe you need to search for another
+1. finally download it
 
-- Better alterative to Godot's build emojis as:
-	- to use them you need to find unicode online
-	- they don't work on some platforms for example Web
-	- they are outdated
+### Better alterative to Godot's build emojis as
+- to use them you need to find unicode online
+- they don't work on some platforms for example Web
+- they are outdated
 
 ## Included
 
@@ -69,16 +69,14 @@ but they don't extends from **Button**.
 
 ## In Editor
 It's adds **IconsFinder** (docked to bottom by default).
-So you can find the icons easily.
+So you can find the icons easily, click on icon to get its name to clipboard.
 It can be in dock mode at bottom or in window mode.
 
 That can be switched in Godot's **Tools** menu.
 ![](.assets/menu-tools.png)
 
-
 Or using *Command Pallet* (`Ctrl+Shift+P`)
 ![](.assets/command-pallet.png)
-
 
 *docked mode*
 ![](.assets/mi-docked.png)
@@ -125,6 +123,7 @@ To fix both of them just change back-and-forward to icon font you want to use
 This addon is replacing our previous to addons:
 - [Godot Material Icons](https://github.com/rakugoteam/Godot-Material-Icons)
 - [Emojis For Godot](https://github.com/rakugoteam/Emojis-For-Godot)
+
 We had broken backward compatibility with them for those reasons:
 - In feature we want to support more IconsFonts so we can use `[icon:icons-name]` in text parsing.
 - We redesigned how addon works under the hood
