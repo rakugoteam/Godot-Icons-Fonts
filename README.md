@@ -69,16 +69,14 @@ but they don't extends from **Button**.
 
 ## In Editor
 It's adds **IconsFinder** (docked to bottom by default).
-So you can find the icons easily.
+So you can find the icons easily, click on icon to get its name to clipboard.
 It can be in dock mode at bottom or in window mode.
 
 That can be switched in Godot's **Tools** menu.
 ![](.assets/menu-tools.png)
 
-
 Or using *Command Pallet* (`Ctrl+Shift+P`)
 ![](.assets/command-pallet.png)
-
 
 *docked mode*
 ![](.assets/mi-docked.png)
