@@ -125,6 +125,7 @@ To fix both of them just change back-and-forward to icon font you want to use
 This addon is replacing our previous to addons:
 - [Godot Material Icons](https://github.com/rakugoteam/Godot-Material-Icons)
 - [Emojis For Godot](https://github.com/rakugoteam/Emojis-For-Godot)
+
 We had broken backward compatibility with them for those reasons:
 - In feature we want to support more IconsFonts so we can use `[icon:icons-name]` in text parsing.
 - We redesigned how addon works under the hood
