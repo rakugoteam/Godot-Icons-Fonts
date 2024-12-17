@@ -85,6 +85,7 @@ func _clear_box():
 
 func _set_order(order:String):
 	_clear_box()
+	await get_tree().create_timer(0.2).timeout
 	_apply_layout(_crate_layout(order))
 
 func _crate_layout(order:String) -> Array[Control]:
@@ -97,6 +98,7 @@ func _crate_layout(order:String) -> Array[Control]:
 
 func _apply_layout(layout: Array[Control]):
 	for control: Control in layout:
+		if control.get_parent() == _box: continue
 		_box.add_child(control)
 		if control is FontIcon:
 			control.size_flags_horizontal\
