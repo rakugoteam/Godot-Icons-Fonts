@@ -96,6 +96,7 @@ extends RichTextLabel
 @export_multiline
 var text_with_icons: String:
 	set(value):
+		if !is_node_ready(): await ready
 		text_with_icons = value
 		bbcode_enabled = true
 		text = IconsFonts.parse_text(value)
@@ -113,11 +114,9 @@ you need add `*.json` files to include files settings:
 ![](.assets/export.png)
 
 ## Know Issues
+- Window mode is init with empty icons render*
 
-- Window mode is init with empty icons render
-- Sometimes click on icon doesn't copy it to clipboard
-
-To fix both of them just change back-and-forward to icon font you want to use
+\**To fix just change back-and-forward to icon font you want to use.*
 
 ## Compatibility
 This addon is replacing our previous to addons:

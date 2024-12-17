@@ -37,11 +37,12 @@ func _ready():
 
 	for renderer: IconsFontsRender in icons_renderers:
 		renderer.tooltip_text = tooltip
-		
+
 func setup():
 	for renderer: IconsFontsRender in icons_renderers:
 		if !renderer.is_node_ready(): await ready
 		renderer.setup()
+		renderer.meta_clicked.connect(_on_meta)
 	icons_renderer = icons_renderers[0]
 
 func update_icons_size(value: int):
@@ -52,14 +53,8 @@ func update_icons_size(value: int):
 	IconsFonts.preview_size = value
 
 func on_font_changed(font_id: int):
-	if icons_renderer:
-		if icons_renderer.meta_clicked.is_connected(_on_meta):
-			icons_renderer.meta_clicked.disconnect(_on_meta)
-
 	icons_renderers_tabs.current_tab = font_id
 	icons_renderer = icons_renderers[font_id]
-
-	icons_renderer.meta_clicked.connect(_on_meta)
 
 func update_table(filter := ""):
 	if not icons_renderer: return

@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://casymgu2sqx81"]
 
-[ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="1_7oe6v"]
+[ext_resource type="FontFile" uid="uid://be10y8fgoiayy" path="res://addons/icons-fonts/icons_fonts/emojis/NotoColorEmoji.ttf" id="1_lglyu"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="2_fd237"]
 [ext_resource type="Script" path="res://addons/icons-fonts/resources/FontIconSetting.gd" id="3_jajcj"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="4_5ca3b"]
@@ -8,8 +8,8 @@
 [ext_resource type="Script" path="res://addons/icons-fonts/examples/rich_text_label_with_icons.gd" id="6_3361y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fw4y0"]
-font = ExtResource("1_7oe6v")
-font_size = 128
+font = ExtResource("1_lglyu")
+font_size = 64
 shadow_size = 0
 shadow_color = Color(1, 1, 1, 1)
 shadow_offset = Vector2(0, 0)

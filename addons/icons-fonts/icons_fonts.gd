@@ -42,6 +42,7 @@ var icon_finder_window_loaded:PackedScene
 func _enter_tree():
 	add_autoload_singleton("IconsFonts", icons_db)
 	await IconsFonts.ready
+
 	icon_finder_loaded = load(icon_finder_scene)
 	icon_finder_window_loaded = load(icon_finder_window_scene)
 
@@ -53,7 +54,6 @@ func _enter_tree():
 	
 	inspector_plugin = preload(inspector_plugin_path).new()
 	add_inspector_plugin(inspector_plugin)
-
 
 func help():
 	# todo update when docs are ready!
