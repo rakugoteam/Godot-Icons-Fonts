@@ -250,6 +250,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_r4h4a")
 script = ExtResource("5_qfxwr")
 on_icon_settings = SubResource("Resource_bo5k2")
 off_icon_settings = SubResource("Resource_6kb3v")
+layout_order = "Label-Icon-Toggle"
 layout_vertical = false
 icon_settings = SubResource("Resource_r0p3s")
 label_text = "Toogle"
