@@ -2,7 +2,6 @@
 @icon("res://addons/icons-fonts/nodes/FontIcon.svg")
 
 # todo add description and docs links when ready
-## Don't change LabelSettings value in this node!
 class_name FontIcon
 extends Label
 
@@ -15,7 +14,6 @@ extends Label
 		icon_settings.emit_changed()
 
 func _ready():
-	clip_text = false
 	_on_icon_settings_changed()
 
 func _on_icon_settings_changed():
