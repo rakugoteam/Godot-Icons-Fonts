@@ -204,6 +204,7 @@ script = ExtResource("4_5ca3b")
 icon_settings = SubResource("Resource_28mvn")
 label_text = "Jakiś Tekst"
 label_settings = SubResource("LabelSettings_6nmg6")
+button_margin = 0
 
 [node name="FontIconCheckButton" type="PanelContainer" parent="MaterialIconsExamples/BoxContainer"]
 layout_mode = 2
@@ -215,6 +216,7 @@ layout_order = "Label-Icon-Toggle"
 icon_settings = SubResource("Resource_7vk3f")
 label_text = "Toogle"
 label_settings = SubResource("LabelSettings_mmhoi")
+button_margin = 0
 toggle_mode = true
 
 [node name="EmojisExamples" type="BoxContainer" parent="."]
@@ -255,6 +257,7 @@ layout_vertical = false
 icon_settings = SubResource("Resource_r0p3s")
 label_text = "Toogle"
 label_settings = SubResource("LabelSettings_mmhoi")
+button_margin = 0
 toggle_mode = true
 
 [node name="RichTextLabelWithIcons" type="RichTextLabel" parent="."]
