@@ -39,8 +39,8 @@ var _toggled := false:
 @export var button_pressed := false:
 	set(value):
 		if toggle_mode:
-			_togglef(null, value)
 			button_pressed = value
+			_togglef(null, value)
 			return
 		
 		emit_signal("pressed")
@@ -123,18 +123,17 @@ func _gui_input(event: InputEvent) -> void:
 				var t := !_toggled
 				_togglef(null, t)
 				
-				if button_group:
+				if button_group and radio_mode:
 					get_tree().call_group(
 						button_group, "_togglef", self, !t)
 					return
 			
-			pressed.emit()
 			state_changed.emit(&"pressed")
+			pressed.emit()
 
 func _togglef(main_button: ButtonContainer, value: bool):
 	if disabled: return
 	if main_button == self: return
-	if radio_mode and _toggled: return
 
 	_toggled = value
 	if value:
