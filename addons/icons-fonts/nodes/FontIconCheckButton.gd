@@ -1,9 +1,9 @@
 @tool
 @icon("res://addons/icons-fonts/nodes/FontIconButton.svg")
-extends FontIconButton
 
 # todo add description and docs links when ready
 class_name FontIconCheckButton
+extends FontIconButton
 
 @export var on_icon_settings := FontIconSettings.new():
 	set(value):
@@ -32,7 +32,6 @@ func _ready():
 func _togglef(main_button: ButtonContainer, value: bool):
 	if disabled: return
 	if main_button == self: return
-	if radio_mode and _toggled: return
 
 	if value: _toggle_icon.icon_settings = on_icon_settings
 	else: _toggle_icon.icon_settings = off_icon_settings
