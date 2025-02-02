@@ -165,15 +165,10 @@ shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
 [node name="TestIconsFonts" type="BoxContainer"]
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = 1.0
-offset_right = 6.0
-offset_bottom = -542.0
+offset_bottom = 105.0
 grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 

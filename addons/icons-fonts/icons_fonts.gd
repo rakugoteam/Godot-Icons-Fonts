@@ -67,6 +67,7 @@ func add_to_dock():
 	if icon_finder_window:
 		editor_interface.remove_child.call_deferred(icon_finder_window)
 	
+	await get_tree().create_timer(0.5).timeout
 	icon_finder = icon_finder_loaded.instantiate()
 	add_control_to_bottom_panel(icon_finder, "Icons Finder")
 	if !icon_finder.is_node_ready(): await ready
