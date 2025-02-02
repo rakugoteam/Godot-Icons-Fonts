@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://casymgu2sqx81"]
+[gd_scene load_steps=33 format=3 uid="uid://casymgu2sqx81"]
 
 [ext_resource type="FontFile" uid="uid://be10y8fgoiayy" path="res://addons/icons-fonts/icons_fonts/emojis/NotoColorEmoji.ttf" id="1_lglyu"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIcon.gd" id="2_fd237"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconButton.gd" id="4_5ca3b"]
 [ext_resource type="Script" path="res://addons/icons-fonts/nodes/FontIconCheckButton.gd" id="5_qfxwr"]
 [ext_resource type="Script" path="res://addons/icons-fonts/examples/rich_text_label_with_icons.gd" id="6_3361y"]
+[ext_resource type="FontFile" uid="uid://bbfeoo2kuf30n" path="res://addons/icons-fonts/icons_fonts/MaterialIcons/material_design_icons.ttf" id="7_u0va4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fw4y0"]
 font = ExtResource("1_lglyu")
@@ -164,16 +165,97 @@ shadow_color = Color(1, 1, 1, 1)
 shadow_size = 0
 shadow_offset = Vector2(0, 0)
 
+[sub_resource type="LabelSettings" id="LabelSettings_niicq"]
+font = ExtResource("7_u0va4")
+font_size = 128
+shadow_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_etxju"]
+script = ExtResource("3_jajcj")
+icon_font = "MaterialIcons"
+icon_name = "alien-outline"
+icon_size = 128
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_oids3"]
+script = ExtResource("3_jajcj")
+icon_font = "MaterialIcons"
+icon_name = "image-outline"
+icon_size = 76
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tev3t"]
+line_spacing = 2.255
+font_size = 66
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5u6mi"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Resource" id="Resource_wajoi"]
+script = ExtResource("3_jajcj")
+icon_font = "MaterialIcons"
+icon_name = "alien-outline"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_xqi1i"]
+script = ExtResource("3_jajcj")
+icon_font = "MaterialIcons"
+icon_name = "alien-outline"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_wx7xm"]
+script = ExtResource("3_jajcj")
+icon_font = "MaterialIcons"
+icon_name = "alien-outline"
+icon_size = 16
+icon_color = Color(1, 1, 1, 1)
+outline_color = Color(1, 1, 1, 1)
+outline_size = 0
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ruvf3"]
+font_size = 21
+
 [node name="TestIconsFonts" type="BoxContainer"]
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = 1.0
-offset_right = 6.0
-offset_bottom = -542.0
+offset_bottom = 105.0
 grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
@@ -270,3 +352,34 @@ fit_content = true
 script = ExtResource("6_3361y")
 text_with_icons = "This text can have icons [mi:image],
 but also emojis :framed_picture:"
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 2
+
+[node name="FontIcon" type="Label" parent="BoxContainer"]
+visible = false
+layout_mode = 2
+text = "󱃋"
+label_settings = SubResource("LabelSettings_niicq")
+script = ExtResource("2_fd237")
+icon_settings = SubResource("Resource_etxju")
+
+[node name="FontIconButton" type="PanelContainer" parent="BoxContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("4_5ca3b")
+icon_settings = SubResource("Resource_oids3")
+label_text = "label"
+label_settings = SubResource("LabelSettings_tev3t")
+
+[node name="FontIconCheckButton" type="PanelContainer" parent="BoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5u6mi")
+script = ExtResource("5_qfxwr")
+on_icon_settings = SubResource("Resource_wajoi")
+off_icon_settings = SubResource("Resource_xqi1i")
+layout_order = "Label-Icon-Toggle"
+icon_settings = SubResource("Resource_wx7xm")
+label_text = "toogle"
+label_settings = SubResource("LabelSettings_ruvf3")
+toggle_mode = true

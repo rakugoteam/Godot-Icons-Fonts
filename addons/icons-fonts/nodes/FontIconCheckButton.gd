@@ -29,6 +29,14 @@ func _ready():
 	_toggle_icon.add_theme_stylebox_override("normal", empty_style)
 	self.layout_order = layout_order
 
+	Utils.connect_if_possible(
+		on_icon_settings, "changed",
+		_toggle_icon._on_icon_settings_changed)
+	
+	Utils.connect_if_possible(
+		off_icon_settings, "changed",
+		_toggle_icon._on_icon_settings_changed)
+
 func _togglef(main_button: ButtonContainer, value: bool):
 	if disabled: return
 	if main_button == self: return

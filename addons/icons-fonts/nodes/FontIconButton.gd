@@ -78,6 +78,23 @@ func _ready():
 	_margins.add_child(_box)
 	add_child(_margins)
 
+	Utils.connect_if_possible(
+		label_settings, "changed", _on_label_settings_changed)
+	
+	Utils.connect_if_possible(
+		icon_settings, "changed", _on_icon_settings_changed)
+
+func _on_label_settings_changed():
+	if label_settings != _label.label_settings:
+		_label.label_settings = label_settings
+
+func _on_icon_settings_changed():
+	if icon_settings != _font_icon.icon_settings:
+		_font_icon.icon_settings = icon_settings
+	Utils.connect_if_possible(
+		icon_settings, "changed",
+		_font_icon._on_icon_settings_changed)
+
 func _clear_box():
 	if _box.get_child_count() == 0: return
 	for ch: Control in _box.get_children():
