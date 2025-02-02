@@ -19,14 +19,14 @@ func get_font_data() -> Dictionary:
 		"MaterialIcons": data =  IconsFonts.material_icons
 		"Emojis": data = IconsFonts.emojis
 		_: text = "Unsupported IconsFont %s" % icon_font
-	
+
 	return data
 
 func get_icon(key:String) -> String:
 	match icon_font:
 		"MaterialIcons": return IconsFonts.get_icon_char("MaterialIcons", key)
 		"Emojis": return str(IconsFonts.emojis[key])
-	
+
 	return ""
 
 func _ready() -> void:
@@ -44,12 +44,12 @@ func setup():
 func update_table(filter := ""):
 	var table = "[table={columns}, {inline_align}]"
 	var columns := int(size.x / IconsFonts.preview_size) + 1
-	if columns <= 10: 
+	if columns <= 10:
 		# size.x on start gives me 8 and slider.value is 16, so columns equals 1
 		# so I add new fallback var start_size = 1056,
 		# which is size.x after when it works
 		columns = int(start_size / IconsFonts.preview_size) + 1
-	
+
 	table = table.format({
 		"columns": columns,
 		"inline_align": INLINE_ALIGNMENT_CENTER
@@ -69,11 +69,11 @@ func update_table(filter := ""):
 
 		var cell := "[cell]{link}[/cell]"
 		table += cell.format({"link": link})
-	
+
 	cells = abs(cells)
 	while cells > columns:
 		cells -= 1
-	
+
 	if cells > 0:
 		for c in cells:
 			table += "[cell] [/cell]"
