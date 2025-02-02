@@ -31,10 +31,6 @@ signal state_changed(state_name: StringName)
 var _toggled := false:
 	get: return _toggled
 
-## If true, on one button in group will be toggled
-## needs toggle_mode = true to works
-@export var radio_mode := false
-
 ## If true, button will be in pressed state
 @export var button_pressed := false:
 	set(value):
@@ -46,7 +42,7 @@ var _toggled := false:
 		emit_signal("pressed")
 
 ## Name of node group to be used as button group
-## It changes all toggleable buttons in group in to radio buttons
+## It changes all buttons with toggle_mode in group into radio buttons
 @export var button_group: StringName = ""
 
 @export_group("Styles", "style_")
@@ -72,16 +68,13 @@ var _toggled := false:
 		if disabled:
 			_change_stylebox("disabled")
 
-var current_style : String
-
-func connect_if_possible(sig: Signal, method: Callable):
-	if !sig.is_connected(method): sig.connect(method)
+var current_style: StringName
 
 func _ready() -> void:
 	_change_stylebox("normal")
 	state_changed.emit(&"normal")
-	connect_if_possible(mouse_entered, _on_mouse_entered)
-	connect_if_possible(mouse_exited, _on_mouse_exited)
+	Utils.connect_if_possible(self, &"mouse_entered", _on_mouse_entered)
+	Utils.connect_if_possible(self, &"mouse_exited", _on_mouse_exited)
 	
 	if button_group: add_to_group(button_group)
 
@@ -123,7 +116,7 @@ func _gui_input(event: InputEvent) -> void:
 				var t := !_toggled
 				_togglef(null, t)
 				
-				if button_group and radio_mode:
+				if button_group:
 					get_tree().call_group(
 						button_group, "_togglef", self, !t)
 					return
