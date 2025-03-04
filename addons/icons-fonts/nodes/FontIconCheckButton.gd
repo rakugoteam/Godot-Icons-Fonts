@@ -21,6 +21,9 @@ extends FontIconButton
 
 var _toggle_icon : FontIcon
 
+func _init() -> void:
+	layout_order = "Label-Icon-Toggle"
+
 func _ready():
 	toggle_mode = true
 	super._ready()
@@ -58,5 +61,5 @@ func _validate_property(property : Dictionary) -> void:
 			"Label-Icon-Toggle", "Label-Toggle-Icon",
 			"Toggle-Label-Icon", "Toggle-Icon-Label",
 			"Icon-Label-Toggle", "Icon-Toggle-Label",
-			"Label-Toggle", "Toggle-Label"
+			"Label-Toggle", "Toggle-Label", "Toggle"
 		])
