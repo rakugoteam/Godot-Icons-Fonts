@@ -6,7 +6,7 @@ class_name FontIconButton
 extends ButtonContainer
 
 @export_group("Layout", "layout_")
-@export_enum("Label-Icon", "Icon-Label")
+@export_enum("Label-Icon", "Icon-Label", "Icon")
 var layout_order := "Label-Icon":
 	set(value):
 		layout_order = value
