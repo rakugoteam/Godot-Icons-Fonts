@@ -89,11 +89,14 @@ func _on_label_settings_changed():
 		_label.label_settings = label_settings
 
 func _on_icon_settings_changed():
-	if icon_settings != _font_icon.icon_settings:
-		_font_icon.icon_settings = icon_settings
+	update_icon(icon_settings, _font_icon)
+
+func update_icon(new_icon_settings: FontIconSettings, font_icon: FontIcon):
+	if new_icon_settings != font_icon.icon_settings:
+		font_icon.icon_settings = icon_settings
 	Utils.connect_if_possible(
-		icon_settings, "changed",
-		_font_icon._on_icon_settings_changed)
+		new_icon_settings, "changed",
+		font_icon._on_icon_settings_changed)
 
 func _clear_box():
 	if _box.get_child_count() == 0: return
