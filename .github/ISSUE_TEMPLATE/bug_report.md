@@ -25,7 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Runtime (please complete the following information):**
  - Godot version [ e.g 3.2]
- - Adn Versiondo [e.g. 2.0.8]
+ - Addon Version [e.g. 2.0.8]
 
 **Additional context**
 Add any other context about the problem here.
