@@ -34,6 +34,9 @@ func _add_toggle_icon(icon_settings: FontIconSettings, on_changed: Callable ) ->
 
 func _ready():
 	toggle_mode = true
+	if "Toggle" not in layout_order:
+		layout_order = "Label-Icon-Toggle"
+
 	super._ready()
 	_toggle_icon_box = BoxContainer.new()
 	_toggle_icon_on = _add_toggle_icon(on_icon_settings, _on_on_icon_changed)
