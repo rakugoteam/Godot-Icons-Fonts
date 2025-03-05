@@ -19,6 +19,12 @@ var layout_order := "Label-Icon":
 		if !is_node_ready(): await ready
 		_box.vertical = value
 
+@export var layout_alignment := BoxContainer.ALIGNMENT_CENTER:
+	set(value):
+		layout_alignment = value
+		if !is_node_ready(): await ready
+		_box.alignment = value
+
 @export_group("Icon", "icon_")
 @export var icon_settings := FontIconSettings.new():
 	set(value):
