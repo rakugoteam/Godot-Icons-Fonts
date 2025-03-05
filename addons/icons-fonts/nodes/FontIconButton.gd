@@ -67,39 +67,40 @@ func _get_lay_dict() -> Dictionary:
 		"Icon": _font_icon,
 	}
 
+func _add_icon(_icon_settings: FontIconSettings) -> FontIcon:
+	var empty_style := StyleBoxEmpty.new()
+	var _icon = FontIcon.new()
+	_icon.add_theme_stylebox_override("normal", empty_style)
+	Utils.connect_if_possible(_icon_settings, "changed",
+		func(): update_icon(_icon_settings, _icon))
+	return _icon
+
 func _ready():
 	for ch: Control in get_children():
 		ch.queue_free()
 
+	ready.connect(func(): self.layout_order = layout_order)
 	var empty_style := StyleBoxEmpty.new()
 	_box = BoxContainer.new()
-	_font_icon = FontIcon.new()
-	_font_icon.add_theme_stylebox_override("normal", empty_style)
+	_font_icon = _add_icon(icon_settings)
 
 	_label = Label.new()
 	_label.add_theme_stylebox_override("normal", empty_style)
-	self.layout_order = layout_order
 
 	_margins = MarginContainer.new()
 	_margins.add_child(_box)
 	add_child(_margins)
 
 	Utils.connect_if_possible(
-		label_settings, "changed", _on_label_settings_changed)
-	
-	Utils.connect_if_possible(
-		icon_settings, "changed", _on_icon_settings_changed)
-
-func _on_label_settings_changed():
-	if label_settings != _label.label_settings:
-		_label.label_settings = label_settings
-
-func _on_icon_settings_changed():
-	update_icon(icon_settings, _font_icon)
+		label_settings, "changed",
+		func():
+			if label_settings != _label.label_settings:
+				_label.label_settings = label_settings
+	)
 
 func update_icon(new_icon_settings: FontIconSettings, font_icon: FontIcon):
 	if new_icon_settings != font_icon.icon_settings:
-		font_icon.icon_settings = icon_settings
+		font_icon.icon_settings = new_icon_settings
 	Utils.connect_if_possible(
 		new_icon_settings, "changed",
 		font_icon._on_icon_settings_changed)
