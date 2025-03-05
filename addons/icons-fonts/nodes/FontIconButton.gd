@@ -13,7 +13,7 @@ var layout_order := "Label-Icon":
 		if !is_node_ready(): await ready
 		_set_order(value)
 
-@export var layout_vertical := true:
+@export var layout_vertical := false:
 	set(value):
 		layout_vertical = value
 		if !is_node_ready(): await ready
