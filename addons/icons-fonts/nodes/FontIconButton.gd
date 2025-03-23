@@ -76,6 +76,7 @@ func _add_icon(_icon_settings: FontIconSettings) -> FontIcon:
 	return _icon
 
 func _ready():
+	super._ready()
 	for ch: Control in get_children():
 		ch.queue_free()
 
