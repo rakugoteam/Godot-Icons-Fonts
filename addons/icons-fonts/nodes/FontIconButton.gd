@@ -13,17 +13,11 @@ var layout_order := "Label-Icon":
 		if !is_node_ready(): await ready
 		_set_order(value)
 
-@export var layout_vertical := false:
+@export var layout_vertical := true:
 	set(value):
 		layout_vertical = value
 		if !is_node_ready(): await ready
 		_box.vertical = value
-
-@export var layout_alignment := BoxContainer.ALIGNMENT_CENTER:
-	set(value):
-		layout_alignment = value
-		if !is_node_ready(): await ready
-		_box.alignment = value
 
 @export_group("Icon", "icon_")
 @export var icon_settings := FontIconSettings.new():
@@ -67,56 +61,56 @@ func _get_lay_dict() -> Dictionary:
 		"Icon": _font_icon,
 	}
 
-func _add_icon(_icon_settings: FontIconSettings) -> FontIcon:
-	var empty_style := StyleBoxEmpty.new()
-	var _icon = FontIcon.new()
-	_icon.add_theme_stylebox_override("normal", empty_style)
-	Utils.connect_if_possible(_icon_settings, "changed",
-		func(): update_icon(_icon_settings, _icon))
-	return _icon
-
 func _ready():
 	super._ready()
 	for ch: Control in get_children():
 		ch.queue_free()
 
-	ready.connect(func(): self.layout_order = layout_order)
 	var empty_style := StyleBoxEmpty.new()
 	_box = BoxContainer.new()
-	_font_icon = _add_icon(icon_settings)
+	_box.alignment = BoxContainer.ALIGNMENT_CENTER
+	_font_icon = FontIcon.new()
+	_font_icon.add_theme_stylebox_override("normal", empty_style)
 
 	_label = Label.new()
 	_label.add_theme_stylebox_override("normal", empty_style)
+	layout_order = layout_order
 
 	_margins = MarginContainer.new()
-	_margins.add_child(_box)
-	add_child(_margins)
+	add_button_child(_box, _margins)
+	add_button_child(_margins)
 
 	Utils.connect_if_possible(
-		label_settings, "changed",
-		func():
-			if label_settings != _label.label_settings:
-				_label.label_settings = label_settings
+		label_settings.changed,
+		_on_label_settings_changed
+	)
+	Utils.connect_if_possible(
+		icon_settings.changed,
+		_on_icon_settings_changed
 	)
 
-func update_icon(new_icon_settings: FontIconSettings, font_icon: FontIcon):
-	if new_icon_settings != font_icon.icon_settings:
-		font_icon.icon_settings = new_icon_settings
+func _on_label_settings_changed():
+	if label_settings != _label.label_settings:
+		_label.label_settings = label_settings
+
+func _on_icon_settings_changed():
+	if icon_settings != _font_icon.icon_settings:
+		_font_icon.icon_settings = icon_settings
 	Utils.connect_if_possible(
-		new_icon_settings, "changed",
-		font_icon._on_icon_settings_changed)
+		icon_settings.changed,
+		_font_icon._on_icon_settings_changed)
 
 func _clear_box():
 	if _box.get_child_count() == 0: return
 	for ch: Control in _box.get_children():
 		_box.remove_child(ch)
 
-func _set_order(order:String):
+func _set_order(order: String):
 	_clear_box()
 	await get_tree().create_timer(0.2).timeout
 	_apply_layout(_crate_layout(order))
 
-func _crate_layout(order:String) -> Array[Control]:
+func _crate_layout(order: String) -> Array[Control]:
 	var layout: Array[Control] = []
 	var order_split := order.split("-")
 	var dict := _get_lay_dict()
@@ -127,7 +121,6 @@ func _crate_layout(order:String) -> Array[Control]:
 func _apply_layout(layout: Array[Control]):
 	for control: Control in layout:
 		if control.get_parent() == _box: continue
-		_box.add_child(control)
+		add_button_child(control, _box)
 		if control is FontIcon:
-			control.size_flags_horizontal\
-				= Control.SIZE_SHRINK_CENTER
+			control.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
