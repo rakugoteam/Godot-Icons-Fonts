@@ -9,55 +9,55 @@ extends FontIconButton
 	set(value):
 		on_icon_settings = value
 		if !is_node_ready(): await ready
-		_toggle_icon_on.icon_settings = value
+		if button_pressed:
+			toggle_icon.icon_settings = value
 
 @export var off_icon_settings := FontIconSettings.new():
 	set(value):
 		off_icon_settings = value
 		if !is_node_ready(): await ready
-		_toggle_icon_off.icon_settings = value
+		if !button_pressed:
+			toggle_icon.icon_settings = value
 
-var _toggle_icon_on: FontIcon
-var _toggle_icon_off: FontIcon
-var _toggle_icon_box: BoxContainer
+var toggle_icon: FontIcon:
+	get:
+		if !_toggle_icon:
+			_toggle_icon = FontIcon.new()
+		return _toggle_icon
+
+var _toggle_icon: FontIcon
 
 func _ready():
 	toggle_mode = true
-	if "Toggle" not in layout_order:
-		layout_order = "Label-Icon-Toggle"
-
 	super._ready()
-	_toggle_icon_box = BoxContainer.new()
+	var empty_style := StyleBoxEmpty.new()
+	toggle_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	toggle_icon.add_theme_stylebox_override("normal", empty_style)
+	self.layout_order = layout_order
+
+	Utils.connect_if_possible(
+		on_icon_settings.changed,
+		toggle_icon._on_icon_settings_changed
+	)
 	
-	_toggle_icon_on = _add_icon(on_icon_settings)
-	_toggle_icon_on.visible = button_pressed
-	_toggle_icon_box.add_child(_toggle_icon_on)
+	Utils.connect_if_possible(
+		off_icon_settings.changed,
+		toggle_icon._on_icon_settings_changed
+	)
 
-	_toggle_icon_off = _add_icon(off_icon_settings)
-	_toggle_icon_off.visible = !button_pressed
-	_toggle_icon_box.add_child(_toggle_icon_off)
-
-func _on_on_icon_changed():
-	update_icon(on_icon_settings, _toggle_icon_on)
-
-func _on_off_icon_changed():
-	update_icon(off_icon_settings, _toggle_icon_on)
-
-func _togglef(main_button: ButtonContainer, value: bool):
-	if disabled: return
-	if main_button == self: return
-	_toggle_icon_on.visible = value
-	_toggle_icon_off.visible = !value
-	super._togglef(main_button, value)
+func _set_button_pressed(value: bool, _toggle_mode := toggle_mode):
+	super._set_button_pressed(value, _toggle_mode)
+	if value: toggle_icon.icon_settings = on_icon_settings
+	else: toggle_icon.icon_settings = off_icon_settings
 
 func _get_lay_dict() -> Dictionary:
 	return {
 		"Label": _label,
 		"Icon": _font_icon,
-		"Toggle": _toggle_icon_box
+		"Toggle": toggle_icon
 	}
 
-func _validate_property(property : Dictionary) -> void:
+func _validate_property(property: Dictionary) -> void:
 	if property.name == &"layout_order":
 		property.hint_string = ",".join([
 			"Label-Icon-Toggle", "Label-Toggle-Icon",
